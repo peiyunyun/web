@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>CSIM - 各校資管系所</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
+
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--datatable-->
+    <link rel="stylesheet" href="css/aboutcsim1.css">
+    <link rel="stylesheet" href="css/aboutcsim2.css" />
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/news1boot.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/news1_style.css" rel="stylesheet" />
+    <style>
+        /* 背景遮罩 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* 彈出窗口 */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        /* 關閉按鈕 */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <h4 class="m-0">
+                <img src="https://www.csim.org.tw/sites/default/files/CSIM.gif">中華民國資訊管理學會
+            </h4>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-3 py-lg-0">
+                <a href="index.html" class="nav-item nav-link active">首頁</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">關於協會</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="aboutcsim.html" class="dropdown-item">學會簡介</a>
+                        <a href="apply.html" class="dropdown-item">申請入會</a>
+                        <a href="download.html" class="dropdown-item">各式資料下載</a>
+                    </div>
+                </div>
+                <a href="department.html" class="nav-item nav-link">各校資管系所</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">研究及出版品</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="https://eclab.nkust.edu.tw/submitjim/" class="dropdown-item">資訊管理學報</a>
+                        <a href="search.html" class="dropdown-item">研究會論文集</a>
+                    </div>
+                </div>
+                <a href="team.html" class="nav-item nav-link">活動花絮</a>
+                <a href="contact.html" class="nav-item nav-link">聯絡我們</a>
+                <a href="english.html" class="nav-item nav-link">English</a>
+                <a href="" class="nav-item nav-link"></a>
+                <a href="" class="nav-item nav-link"></a>
+                <button href="" class="nav-item nav-link" id="show"
+                    style="background-color:#0a0a2300;border:none;width:30px;"><i class="fa fa-user-circle-o"
+                        style="font-size:28px;" aria-hidden="true"></i></button>
+                <dialog id="infoModal" style="width: 30%;border:1px;">
+                    <button id="close" style="margin-left: 400px;background-color:#ff961f;border:#fff;">X</button>
+                    <div class="col-lg-8 col-md-6">
+                        <div class="border-start border-5 border-primary ps-4 mb-5">
+                            <h4 class="display-6 mb-0">
+                                登入
+
+                            </h4>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-6">
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control bg-light border-0"
+                                            placeholder="請帳號密碼..." />
+                                        <label>帳號</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control bg-light border-0"
+                                            placeholder="請輸入密碼..." />
+                                        <label>密碼</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <button class="btn btn-primary w-100 py-3" type=""
+                                        style="background-color: rgb(188, 142, 81);border:none;">
+                                        還沒有帳號!
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-primary w-100 py-3" type="">
+                                        登入
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </dialog>
+                <script>
+                    let btn = document.querySelector("#show");
+                    let infoModal = document.querySelector("#infoModal");
+                    btn.addEventListener("click", function () {
+                        infoModal.showModal();
+                    })
+                    let close = document.querySelector("#close");
+                    close.addEventListener("click", function () {
+                        infoModal.close();
+                    })
+                </script>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center py-5">
+            <h1 class="display-4  animated slideInDown mb-4" style="color: #424b41;">最新消息</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <div class="col-lg-15 wow fadeInUp" data-wow-delay="0.2s" style="padding-left: 8%;">
+        <h4><a href="index.html" style="color: #754900;"><i class="fa fa-arrow-left" aria-hidden="true"></i> 返回</a></h4>
+    </div>
+    <!--活動 Start-->
+    <div class="container-xxl py-50">
+        <div class="container">
+            <div class="row g-5 align-items-end mb-5">
+                <div class="col-lg-15 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="border-start border-5 border-primary ps-4">
+                        <h3 class="mb-0">
+                            【徵聘公告】 靜宜大學資料科學暨大數據分析與應用學系(資科系)誠徵教師
+                        </h3>
+                        <P>2023/10/30 - 14:37</P>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xxl">
+        <div class="container">
+
+            <div class=" wow fadeInUp" data-wow-delay="0.5s" style="background-color: rgb(250 247 240);">
+                <div class="h-100">
+                    <div class="border-star border-5 border-primary ps-4 mb-5">
+                        <p class="py-2">
+                        <h5>【徵聘公告】</h5>
+                        <br>
+                        【聘任類型】
+                        <br>
+                        專任或專案助理教授(含)以上。
+                        <br><br>
+                        【聘任資格】
+                        <br>
+                        具國內外博士學位或助理教授以上資格。
+                        <br><br>
+                        【需求人數】1名
+                        <br><br>
+                        【專長領域】
+                        <br>
+                        人工智慧、資料科學(大數據)相關領域
+                        <br><br>
+                        【起聘日期】
+                        <br>
+                        起聘日依學校規定，預計為112學年第2學期
+                        <br><br>
+                        【檢附資料】
+                        <br>
+                        1. 個人資料表(格式請於下列網址下載：<a href="http://ds.pu.edu.tw">http://ds.pu.edu.tw</a> →「法規清單」→「表單下載」) (上傳連結<a href="https://tinyurl.com/2zuwswgq">https://tinyurl.com/2zuwswgq</a>)
+                        <br>
+                        2. 博士學位證書影本（國外學歷均須駐外單位查驗）(聘任前可取得博士學位證書者，請附指導教授同意函) (上傳連結<a href="https://tinyurl.com/2hc62msv">https://tinyurl.com/2hc62msv</a>)
+                        <br>
+                        3. 教師證書影本(初次任教者免) (上傳連結<a href="https://tinyurl.com/2kdjf874">https://tinyurl.com/2kdjf874</a>)
+                        <br>
+                        4. 成績單(含大學、碩士、博士) (上傳連結<a href="https://tinyurl.com/2fxpzayh">https://tinyurl.com/2fxpzayh</a>)
+                        <br>
+                        5. 推薦信至少2封(電子檔) (上傳連結<a href="https://tinyurl.com/2h3pwwer">https://tinyurl.com/2h3pwwer</a>)
+                        <br>
+                        6. 博士論文摘要及全文(上傳連結<a href="https://tinyurl.com/2ebg4bs2">https://tinyurl.com/2ebg4bs2</a>)
+                        <br>
+                        7. 著作目錄表(上傳連結<a href="https://tinyurl.com/2nmu9eyj">https://tinyurl.com/2nmu9eyj</a>)
+                        <br>
+                        8. 代表性著作全文(上傳連結<a href="https://tinyurl.com/2mhqoab8">https://tinyurl.com/2mhqoab8</a>)
+                        <br>
+                        9. 填寫「靜宜大學資料科學暨大數據分析與應用學系新聘教師課程勾選表」以及檢附勾選的課程綱要(格式請於下列網址下載：<a href="http://ds.pu.edu.tw">http://ds.pu.edu.tw</a> →「法規清單」→「表單下載」)(上傳連結<a href="https://tinyurl.com/2fal7tpb">https://tinyurl.com/2fal7tpb</a>)
+                        <br>
+                        10. 其他有利審查之資料(學經歷證明(學界與業界)、產學合作、國際合作交流…) (上傳連結<a href="https://tinyurl.com/2mfavavv">https://tinyurl.com/2mfavavv</a>)
+                        <br><br>
+                        《注意事項》
+                        <br>
+                        以上資料請提供PDF電子檔，檔名請以如『6.博士論文摘要及全文_姓名』方式呈現(務必加上姓名)。一個項目一個檔案(共10個檔案)。
+                        <br><br>
+                        【收件截止日】
+                        <br>即日起，資料隨到隨審(最後收件期限：112年11月3日)<br>
+                        <br>【聯絡人】<br>
+                        系秘書：黃小姐
+                        <br>系主任：袁淵明 (Email：<a href="jmyuan@pu.edu.tw">jmyuan@pu.edu.tw</a>)
+                        <br>電話：04-26328001轉15102 或 15051 / 15053
+                        <br>E-mail：<a href="pu20250@pu.edu.tw">pu20250@pu.edu.tw</a>
+                        <br>系網頁：<a href="http://ds.pu.edu.tw/">http://ds.pu.edu.tw/</a>
+                        <br>&nbsp;&nbsp;
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">
+                        <i class="fa fa-building text-primary me-3"></i>中華民國資訊管理學會
+                    </h4>
+                    <p>
+                        成立於民國 79年，係集合群國大專院校資訊管理學門之學者專家與部分資訊業界之精英組合而成。
+                    </p>
+
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4"><i class="fa fa-map-marker"></i> 會址</h4>
+                    <p>
+                        <a
+                            href="https://www.google.com.tw/maps/place/251%E6%96%B0%E5%8C%97%E5%B8%82%E6%B7%A1%E6%B0%B4%E5%8D%80%E8%8B%B1%E5%B0%88%E8%B7%AF151%E8%99%9F/@25.1732175,121.446974,17z/data=!3m1!4b1!4m6!3m5!1s0x3442aff88cdfea69:0x40adc63d62b9e736!8m2!3d25.1732127!4d121.4495489!16s%2Fg%2F11csm1_t5w?hl=zh-TW&entry=ttu">251301
+                            新北市淡水區英專路151號（資管系辦公室）</a>
+                    </p>
+                    <p>
+                        No.151, Yingzhuan Rd., Tamsui Dist., New Taipei City 251301, Taiwan (R.O.C.)
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4"><i class="fa fa-envelope"></i> Email</h4>
+                    <p>
+                        <a href="mailto:csim.service@gmail.com">csim.service@gmail.com</a>
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4"><i class="fa fa-phone" aria-hidden="true"></i> TEL</h4>
+                    <p>專員：楊先生、林小姐</p>
+                    <p>
+                        02-26215656 分機 2228
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <a href="/web/index.html">中華民國資訊管理學會</a>版權所有@2013 CSIM All Rights Reserved.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

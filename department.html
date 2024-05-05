@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>CSIM - 各校資管系所</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="" name="keywords" />
+  <meta content="" name="description" />
+
+
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon" />
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/department.css" rel="stylesheet" />
+
+  <!-- Template Stylesheet -->
+  <link href="css/department_style.css" rel="stylesheet" />
+  <!--jquery-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!--datatable-->
+  <link rel="stylesheet" href="css/dep2.css" />
+  <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+  <!--css-->
+  <link rel="stylesheet" href="css/dep1.css">
+</head>
+
+<body>
+  <!-- Spinner Start -->
+  <div id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+
+
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
+    <a href="index.html" class="navbar-brand d-flex align-items-center">
+      <h4 class="m-0">
+        <img src="https://www.csim.org.tw/sites/default/files/CSIM.gif">中華民國資訊管理學會
+      </h4>
+    </a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto py-3 py-lg-0">
+        <a href="index.html" class="nav-item nav-link active">首頁</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">關於協會</a>
+          <div class="dropdown-menu bg-light m-0">
+            <a href="aboutcsim.html" class="dropdown-item">學會簡介</a>
+            <a href="apply.html" class="dropdown-item">申請入會</a>
+            <a href="download.html" class="dropdown-item">各式資料下載</a>
+          </div>
+        </div>
+        <a href="department.html" class="nav-item nav-link">各校資管系所</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">研究及出版品</a>
+          <div class="dropdown-menu bg-light m-0">
+            <a href="https://eclab.nkust.edu.tw/submitjim/" class="dropdown-item">資訊管理學報</a>
+            <a href="search.html" class="dropdown-item">研究會論文集</a>
+          </div>
+        </div>
+        <a href="team.html" class="nav-item nav-link">活動花絮</a>
+        <a href="contact.html" class="nav-item nav-link">聯絡我們</a>
+        <a href="english.html" class="nav-item nav-link">English</a>
+        <a href="" class="nav-item nav-link"></a>
+        <a href="" class="nav-item nav-link"></a>
+        <button href="" class="nav-item nav-link" id="show"
+          style="background-color:#0a0a2300;border:none;width:30px;"><i class="fa fa-user-circle-o"
+            style="font-size:28px;" aria-hidden="true"></i></button>
+        <dialog id="infoModal" style="width: 30%;border:1px;">
+          <button id="close" style="margin-left: 400px;background-color:#ff961f;border:#fff;">X</button>
+          <div class="col-lg-8 col-md-6">
+            <div class="border-start border-5 border-primary ps-4 mb-5">
+              <h4 class="display-6 mb-0">
+                登入
+
+              </h4>
+
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-6">
+            <form>
+              <div class="row g-3">
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="text" class="form-control bg-light border-0" placeholder="請帳號密碼..." />
+                    <label>帳號</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="password" class="form-control bg-light border-0" placeholder="請輸入密碼..." />
+                    <label>密碼</label>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <button class="btn btn-primary w-100 py-3" type=""
+                    style="background-color: rgb(188, 142, 81);border:none;">
+                    還沒有帳號!
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-primary w-100 py-3" type="">
+                    登入
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </dialog>
+        <script>
+          let btn = document.querySelector("#show");
+          let infoModal = document.querySelector("#infoModal");
+          btn.addEventListener("click", function () {
+            infoModal.showModal();
+          })
+          let close = document.querySelector("#close");
+          close.addEventListener("click", function () {
+            infoModal.close();
+          })
+        </script>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center py-5">
+      <h1 class="display-4 animated slideInDown mb-4" style="color:#732a2a">各校資管系所</h1>
+      <nav aria-label="breadcrumb animated slideInDown">
+        <ol class="breadcrumb justify-content-center mb-0">
+
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- Page Header End -->
+
+  <!--table start-->
+  <div class="">
+    <table id="myTable" class="display hover cell-border row-border stripe">
+      <thead>
+        <tr>
+          <th>學校名稱</th>
+          <th>系主任</th>
+          <th>系所名稱</th>
+          <th>電話</th>
+          <th>地址</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd views-row-first">
+          <td class="views-field views-field-title">
+            <a href="http://www.szmc.edu.tw/">樹人醫護管理專校</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            楊媚靜 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="http://www.szmc.edu.tw/Information/" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+              datatype="">資訊管理系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (07)6979392 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/821%E9%AB%98%E9%9B%84%E5%B8%82%E8%B7%AF%E7%AB%B9%E5%8D%80%E7%92%B0%E7%90%83%E8%B7%AF452%E8%99%9F/@22.8827772,120.2597346,17z/data=!3m1!4b1!4m6!3m5!1s0x346e7352a399fbb9:0xe9a496740c561495!8m2!3d22.8824341!4d120.26209!16s%2Fg%2F11b8txrddz?hl=zh-TW&entry=ttu">821
+              高雄市路竹區環球路452號</a>
+          </td>
+        </tr>
+        <tr class="even">
+          <td class="views-field views-field-title">
+            <a href="https://da.ukn.edu.tw/bin/home.php">康寧大學(健康數位科技學系)</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            陳國偉 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="https://da.ukn.edu.tw/bin/home.php" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+              datatype="">資訊管理系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (06)2552500#33300 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/709%E5%8F%B0%E5%8D%97%E5%B8%82%E5%AE%89%E5%8D%97%E5%8D%80%E5%AE%89%E4%B8%AD%E8%B7%AF%E4%BA%94%E6%AE%B5188%E8%99%9F%E8%A1%8C%E6%94%BF%E5%A4%A7%E6%A8%93/@23.0593304,120.1524375,17z/data=!3m1!4b1!4m6!3m5!1s0x346dd80bdbb19775:0xd13228728dca9aea!8m2!3d23.0593255!4d120.1550124!16s%2Fg%2F1q5bkjg52?hl=zh-TW&entry=ttu">709
+              台南市安南區安中路五段188號</a>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td class="views-field views-field-title">
+            <a href="https://iecm.twu.edu.tw/showindex.php">環球科技大學(資訊與電子商務管理系)</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            盧盈光 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="https://iecm.twu.edu.tw/showindex.php" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+              datatype="">資訊管理系</a>
+          </td>
+          <td class="views-field views-field-field-phone">
+            (05)5370988#4351 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/640%E9%9B%B2%E6%9E%97%E7%B8%A3%E6%96%97%E5%85%AD%E5%B8%82%E9%8E%AE%E5%8D%97%E8%B7%AF1221%E8%99%9F%E5%B9%BC%E4%BF%9D%E5%A4%A7%E6%A8%93/@23.6806817,120.5573895,17z/data=!3m1!4b1!4m6!3m5!1s0x346ec87725eb492d:0x65cecd292a239f57!8m2!3d23.6806768!4d120.5599644!16s%2Fg%2F1q5ccdxt9?hl=zh-TW&entry=ttu">640
+              雲林縣斗六市鎮南路1221號</a>
+          </td>
+        </tr>
+        <tr class="even">
+          <td class="views-field views-field-title">
+            <a href="https://www.stu.edu.tw/">樹德科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            蔡旭昇 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="https://www.mis.stu.edu.tw/" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+              datatype="">資訊管理系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (07)6158000#3002 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/824%E9%AB%98%E9%9B%84%E5%B8%82%E7%87%95%E5%B7%A2%E5%8D%80%E6%A9%AB%E5%B1%B1%E8%B7%AF59%E8%99%9F/@22.7625307,120.3740179,17z/data=!3m1!4b1!4m6!3m5!1s0x346e118fbf8df423:0xe680f8b6dba92b20!8m2!3d22.7625258!4d120.3765928!16s%2Fg%2F11c16011xq?hl=zh-TW&entry=ttu">824
+              高雄市燕巢區橫山路59號</a>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td class="views-field views-field-title">
+            <a href="https://www.feu.edu.tw/">遠東科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            何瑞峰 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="http://www.feu.edu.tw/edu/mis/101new/index.asp" typeof="skos:Concept"
+              property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (06)5979566 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/744%E5%8F%B0%E5%8D%97%E5%B8%82%E6%96%B0%E5%B8%82%E5%8D%80%E4%B8%AD%E8%8F%AF%E8%B7%AF49%E8%99%9F/@23.0672783,120.2943078,17z/data=!3m1!4b1!4m6!3m5!1s0x346e7a6013eca5bd:0xdc5a64a5b8e1b41c!8m2!3d23.0672734!4d120.2968827!16s%2Fg%2F11bw3zk94q?hl=zh-TW&entry=ttu">744
+              台南市新市區中華路49號</a>
+          </td>
+        </tr>
+        <tr class="even">
+          <td class="views-field views-field-title">
+            <a href="https://www.fy.edu.tw/">輔英科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            葉富豪 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="https://eitm.fy.edu.tw/?Lang=zh-tw" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+              datatype="">資訊科技與管理學系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (07)7811151#6480 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/831%E9%AB%98%E9%9B%84%E5%B8%82%E5%A4%A7%E5%AF%AE%E5%8D%80%E9%80%B2%E5%AD%B8%E8%B7%AF151%E8%99%9F/@22.6012802,120.3886498,17.75z/data=!4m6!3m5!1s0x346e1b820fe84ef3:0x11500cb0069f2588!8m2!3d22.602448!4d120.3889446!16s%2Fg%2F11bytp0c8y?hl=zh-TW&entry=ttu">831
+              高雄市大寮區進學路151號</a>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td class="views-field views-field-title">
+            <a href="https://www.cnu.edu.tw/">嘉南藥理科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            陳瑞甫 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="https://mis.cnu.edu.tw/" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+              datatype="">資訊管理系</a>
+          </td>
+          <td class="views-field views-field-field-phone">
+            (06)2664911#5300 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/717%E5%8F%B0%E5%8D%97%E5%B8%82%E4%BB%81%E5%BE%B7%E5%8D%80%E4%BA%8C%E4%BB%81%E8%B7%AF%E4%B8%80%E6%AE%B560%E8%99%9F/@22.9226653,120.2234568,17z/data=!3m1!4b1!4m6!3m5!1s0x346e74ed780310a9:0x263f8eec886eb872!8m2!3d22.9226604!4d120.2260317!16s%2Fg%2F11hdccsgxz?hl=zh-TW&entry=ttu">717
+              台南市仁德區二仁路一段60號</a>
+          </td>
+        </tr>
+        <tr class="even">
+          <td class="views-field views-field-title">
+            <a href="https://www.ksu.edu.tw/">崑山科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            曾生元 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="https://web.ksu.edu.tw/DTMAIMD/bulletin/" typeof="skos:Concept"
+              property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (06)2727175 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/710%E5%8F%B0%E5%8D%97%E5%B8%82%E6%B0%B8%E5%BA%B7%E5%8D%80%E5%B4%91%E5%A4%A7%E8%B7%AF195%E8%99%9F/@22.9953219,120.2518756,17z/data=!3m1!4b1!4m6!3m5!1s0x346e7134636fad9d:0x4a8c0028f06dfcf9!8m2!3d22.995317!4d120.2544505!16s%2Fg%2F11l9_l5w1b?hl=zh-TW&entry=ttu">710
+              台南市永康區崑大路195號</a>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td class="views-field views-field-title">
+            <a href="https://www.kyu.edu.tw/kyunew4/allkyu.html">高苑科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            史浩文 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+          <td class="views-field views-field-field-phone">
+            (07)6077090 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/821%E9%AB%98%E9%9B%84%E5%B8%82%E8%B7%AF%E7%AB%B9%E5%8D%80%E4%B8%AD%E5%B1%B1%E8%B7%AF1821%E8%99%9F%E5%9C%96%E8%B3%87%E5%A4%A7%E6%A8%93/@22.842149,120.2638461,17z/data=!3m1!4b1!4m6!3m5!1s0x346e0c893cb32e0f:0x50c7d048ae75b8e2!8m2!3d22.8421441!4d120.266421!16s%2Fg%2F1q5bm859j?hl=zh-TW&entry=ttu">82146
+              高雄市路竹區中山路1821號</a>
+          </td>
+        </tr>
+        <tr class="even">
+          <td class="views-field views-field-title">
+            <a href="https://www.meiho.edu.tw/">美和科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            苑梅俊 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="https://doit.meiho.edu.tw/" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+              datatype="">資訊科技系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (08)7799821#8661 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/912%E5%B1%8F%E6%9D%B1%E7%B8%A3%E5%85%A7%E5%9F%94%E9%84%89%E5%B1%8F%E5%85%89%E8%B7%AF23%E8%99%9F/@22.6031351,120.5569143,17z/data=!3m1!4b1!4m6!3m5!1s0x346e22585881c575:0x7c7a5d2ba2fc224a!8m2!3d22.6031302!4d120.5594892!16s%2Fg%2F11ckqmj32p?hl=zh-TW&entry=ttu">
+              912 屏東縣內埔鄉屏光路23號</a>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td class="views-field views-field-title">
+            <a href="/mis/236">南台科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            汪美香 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (06)2533131#4301 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/710%E5%8F%B0%E5%8D%97%E5%B8%82%E6%B0%B8%E5%BA%B7%E5%8D%80%E5%8D%97%E5%8F%B0%E8%A1%971%E8%99%9F%E7%AC%AC%E5%85%AD%E5%AD%B8%E7%94%9F%E5%AE%BF%E8%88%8D/@23.0213439,120.2219869,17z/data=!3m1!4b1!4m6!3m5!1s0x346e771ef76508d7:0x9616b5ee0bdc9492!8m2!3d23.021339!4d120.2245618!16s%2Fg%2F1q5bkyypt?hl=zh-TW&entry=ttu">
+              71005 台南市永康區南台街1號</a>
+          </td>
+        </tr>
+        <tr class="even">
+          <td class="views-field views-field-title">
+            <a href="/mis/235">國立澎湖科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            林永清 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (06)9264115#3402 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/880%E6%BE%8E%E6%B9%96%E7%B8%A3%E9%A6%AC%E5%85%AC%E5%B8%82%E5%85%AD%E5%90%88%E8%B7%AF300%E8%99%9F%E9%AB%94%E8%82%B2%E9%A4%A8%E6%9A%A8%E5%AD%B8%E7%94%9F%E6%B4%BB%E5%8B%95%E4%B8%AD%E5%BF%83/@23.5744547,119.5800306,17z/data=!3m1!4b1!4m6!3m5!1s0x346c5add0593d34d:0x11a5be320c8ffbfe!8m2!3d23.5744498!4d119.5826055!16s%2Fg%2F1q5blmyr5?hl=zh-TW&entry=ttu">880
+              澎湖縣馬公市六合路300號</a>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td class="views-field views-field-title">
+            <a href="/mis/233">國立高雄科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            蘇國瑋 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (07)6011000#34102 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/824%E9%AB%98%E9%9B%84%E5%B8%82%E7%87%95%E5%B7%A2%E5%8D%80%E5%A4%A7%E5%AD%B8%E8%B7%AF1%E8%99%9F/@22.756693,120.3336925,17z/data=!3m1!4b1!4m6!3m5!1s0x346e0e2230aa3d55:0x543065c5e05ec880!8m2!3d22.7566881!4d120.3362674!16s%2Fg%2F11b8v5yl4c?hl=zh-TW&entry=ttu">
+              824 高雄市燕巢區大學路1號</a>
+          </td>
+        </tr>
+        <tr class="even">
+          <td class="views-field views-field-title">
+            <a href="/mis/231">國立屏東大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            戴逸民 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (08)7663800 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/900%E5%B1%8F%E6%9D%B1%E7%B8%A3%E5%B1%8F%E6%9D%B1%E5%B8%82%E6%B0%91%E7%94%9F%E6%9D%B1%E8%B7%AF51%E8%99%9F/@22.6572749,120.5082491,17z/data=!3m1!4b1!4m6!3m5!1s0x346e17f66b789cfd:0x1c4c907093e2f9c4!8m2!3d22.65727!4d120.510824!16s%2Fg%2F11c5cl00gx?hl=zh-TW&entry=ttu">900
+              屏東縣屏東市民生東路51號</a>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td class="views-field views-field-title">
+            <a href="/mis/230">國立虎尾科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            吳純慧 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+
+          <td class="views-field views-field-field-phone">
+            (05)6315000 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/632%E9%9B%B2%E6%9E%97%E7%B8%A3%E8%99%8E%E5%B0%BE%E9%8E%AE%E6%96%87%E5%8C%96%E8%B7%AF64%E8%99%9F/@23.7015581,120.4278711,17z/data=!3m1!4b1!4m6!3m5!1s0x346eba00b4f16d5f:0x831dc70c8064aaf!8m2!3d23.7015532!4d120.430446!16s%2Fg%2F11c5fv5l3d?hl=zh-TW&entry=ttu">632
+              雲林縣虎尾鎮文化路64號</a>
+          </td>
+        </tr>
+        <tr class="even">
+          <td class="views-field views-field-title">
+            <a href="/mis/229">國立雲林科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            莊煥銘 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+          <td class="views-field views-field-field-phone">
+            (05)5342601#5302~5304 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/640%E9%9B%B2%E6%9E%97%E7%B8%A3%E6%96%97%E5%85%AD%E5%B8%82%E5%A4%A7%E5%AD%B8%E8%B7%AF%E4%B8%89%E6%AE%B5123%E8%99%9F%E9%9B%B2%EF%BC%8C+%E9%82%A3%E8%A3%A1/@23.6918118,120.5320371,18.25z/data=!4m6!3m5!1s0x346ec80357a92787:0xbc456130f9604329!8m2!3d23.6920375!4d120.5335239!16s%2Fg%2F1q5bmp3l4?hl=zh-TW&entry=ttu">64002
+              雲林縣斗六市大學路三段123號</a>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td class="views-field views-field-title">
+            <a href="/mis/228">嶺東科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            黃國華 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+          <td class="views-field views-field-field-phone">
+            (04)23892088#3732 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/408%E5%8F%B0%E4%B8%AD%E5%B8%82%E5%8D%97%E5%B1%AF%E5%8D%80%E5%B6%BA%E6%9D%B1%E8%B7%AF1%E8%99%9F/@24.1370234,120.607647,17z/data=!3m1!4b1!4m6!3m5!1s0x34693e7d3e89855f:0x5238a6b9a1eb0c04!8m2!3d24.1370185!4d120.6102219!16s%2Fg%2F11cshpl2dv?hl=zh-TW&entry=ttu">408
+              台中市南屯區嶺東路1號</a>
+          </td>
+        </tr>
+        <tr class="even">
+          <td class="views-field views-field-title">
+            <a href="/mis/227">僑光科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            程榮祥 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+          <td class="views-field views-field-field-phone">
+            (04)27016855 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/407%E5%8F%B0%E4%B8%AD%E5%B8%82%E8%A5%BF%E5%B1%AF%E5%8D%80%E5%83%91%E5%85%89%E8%B7%AF100%E8%99%9F/@24.1892213,120.6420868,17z/data=!3m1!4b1!4m6!3m5!1s0x3469163e4625290b:0xc199528dd05cd383!8m2!3d24.1892164!4d120.6446617!16s%2Fg%2F11sv2jssj3?hl=zh-TW&entry=ttu">407
+              台中市西屯區僑光路100號</a>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td class="views-field views-field-title">
+            <a href="/mis/226">朝陽科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            呂慈純 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+          <td class="views-field views-field-field-phone">
+            (04)23323000#7124 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/%E6%9C%9D%E9%99%BD%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%B8/@24.0685763,120.712183,17z/data=!3m1!4b1!4m6!3m5!1s0x346924aa5ff8ce27:0x7c8496caccaa905!8m2!3d24.0685714!4d120.7147579!16s%2Fm%2F02r56j_?hl=zh-TW&entry=ttu">413310
+              台中市霧峰區吉峰東路168號</a>
+          </td>
+        </tr>
+        <tr class="even views-row-last">
+          <td class="views-field views-field-title">
+            <a href="/mis/225">修平科技大學</a>
+          </td>
+          <td class="views-field views-field-field-dept-dir">
+            王仁澤 </td>
+          <td class="views-field views-field-field-dept">
+            <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel" datatype="">資訊管理系</a>
+          </td>
+          <td class="views-field views-field-field-phone">
+            (04)23692136 </td>
+          <td class="views-field views-field-view-node">
+            <a
+              href="https://www.google.com.tw/maps/place/412%E5%8F%B0%E4%B8%AD%E5%B8%82%E5%A4%A7%E9%87%8C%E5%8D%80%E5%B7%A5%E6%A5%AD%E8%B7%AF11%E8%99%9F%E9%AB%94%E8%82%B2%E9%A4%A8/@24.0967568,120.7086775,17z/data=!3m1!4b1!4m6!3m5!1s0x34693ccb45fa494b:0xcb27ed784c19ddb2!8m2!3d24.0967519!4d120.7112524!16s%2Fg%2F1q5bmx55s?hl=zh-TW&entry=ttu">412
+              台中市大里區工業路11號</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    // 自訂中文筆畫排序函式
+    //中文排序
+    jQuery.fn.dataTableExt.oSort['chinese-string-asc'] = function (s1, s2) {
+      return s1.localeCompare(s2);  //chinese-string的排序是根据中文Unicode码点来排序的，而不是根据中文字符的筆劃数。這表示會根據Unicode編碼來進行排序，而不是根據中文字符的筆劃數。
+    };
+    jQuery.fn.dataTableExt.oSort['chinese-string-desc'] = function (s1, s2) {
+      return s2.localeCompare(s1);
+    };
+    $(document).ready(function () {
+      $('#myTable').DataTable({
+        "aLengthMenu": [5,10,20,50],
+        'iDisplayLength': 5, 
+        //中文化
+        "language": {
+          "processing": "處理中...",
+          "loadingRecords": "載入中...",
+          "paginate": {
+            "first": "第一頁",
+            "previous": "上一頁",
+            "next": "下一頁",
+            "last": "最後一頁"
+          },
+          "emptyTable": "目前沒有資料",
+          "datetime": {
+            "previous": "上一頁",
+            "next": "下一頁",
+            "hours": "時",
+            "minutes": "分",
+            "seconds": "秒",
+            "amPm": [
+              "上午",
+              "下午"
+            ],
+            "unknown": "未知",
+            "weekdays": [
+              "週日",
+              "週一",
+              "週二",
+              "週三",
+              "週四",
+              "週五",
+              "週六"
+            ],
+            "months": [
+              "一月",
+              "二月",
+              "三月",
+              "四月",
+              "五月",
+              "六月",
+              "七月",
+              "八月",
+              "九月",
+              "十月",
+              "十一月",
+              "十二月"
+            ]
+          },
+          "searchBuilder": {
+            "add": "新增條件",
+            "condition": "條件",
+            "deleteTitle": "刪除過濾條件",
+            "button": {
+              "_": "複合查詢 (%d)",
+              "0": "複合查詢"
+            },
+            "clearAll": "清空",
+            "conditions": {
+              "array": {
+                "contains": "含有",
+                "equals": "等於",
+                "empty": "空值",
+                "not": "不等於",
+                "notEmpty": "非空值",
+                "without": "不含"
+              },
+              "date": {
+                "after": "大於",
+                "before": "小於",
+                "between": "在其中",
+                "empty": "為空",
+                "equals": "等於",
+                "not": "不為",
+                "notBetween": "不在其中",
+                "notEmpty": "不為空"
+              },
+              "number": {
+                "between": "在其中",
+                "empty": "為空",
+                "equals": "等於",
+                "gt": "大於",
+                "gte": "大於等於",
+                "lt": "小於",
+                "lte": "小於等於",
+                "not": "不為",
+                "notBetween": "不在其中",
+                "notEmpty": "不為空"
+              },
+              "string": {
+                "contains": "含有",
+                "empty": "為空",
+                "endsWith": "字尾為",
+                "equals": "等於",
+                "not": "不為",
+                "notEmpty": "不為空",
+                "startsWith": "字首為",
+                "notContains": "不含",
+                "notStartsWith": "開頭不是",
+                "notEndsWith": "結尾不是"
+              }
+            },
+            "data": "欄位",
+            "leftTitle": "群組條件",
+            "logicAnd": "且",
+            "logicOr": "或",
+            "rightTitle": "取消群組",
+            "title": {
+              "_": "複合查詢 (%d)",
+              "0": "複合查詢"
+            },
+            "value": "內容"
+          },
+          "editor": {
+            "close": "關閉",
+            "create": {
+              "button": "新增",
+              "title": "新增資料",
+              "submit": "送出新增"
+            },
+            "remove": {
+              "button": "刪除",
+              "title": "刪除資料",
+              "submit": "送出刪除",
+              "confirm": {
+                "_": "您確定要刪除您所選取的 %d 筆資料嗎？",
+                "1": "您確定要刪除您所選取的 1 筆資料嗎？"
+              }
+            },
+            "error": {
+              "system": "系統發生錯誤(更多資訊)"
+            },
+            "edit": {
+              "button": "修改",
+              "title": "修改資料",
+              "submit": "送出修改"
+            },
+            "multi": {
+              "title": "多重值",
+              "info": "您所選擇的多筆資料中，此欄位包含了不同的值。若您想要將它們都改為同一個值，可以在此輸入，要不然它們會保留各自原本的值。",
+              "restore": "復原",
+              "noMulti": "此輸入欄需單獨輸入，不容許多筆資料一起修改"
+            }
+          },
+          "autoFill": {
+            "cancel": "取消"
+          },
+          "buttons": {
+            "copySuccess": {
+              "_": "複製了 %d 筆資料",
+              "1": "複製了 1 筆資料"
+            },
+            "copyTitle": "已經複製到剪貼簿",
+            "excel": "Excel",
+            "pdf": "PDF",
+            "print": "列印",
+            "copy": "複製",
+            "colvis": "欄位顯示",
+            "colvisRestore": "重置欄位顯示",
+            "csv": "CSV",
+            "pageLength": {
+              "-1": "顯示全部",
+              "_": "顯示 %d 筆"
+            },
+            "createState": "建立狀態",
+            "removeAllStates": "移除所有狀態",
+            "removeState": "移除",
+            "renameState": "重新命名",
+            "savedStates": "儲存狀態",
+            "stateRestore": "狀態 %d",
+            "updateState": "更新"
+          },
+          "searchPanes": {
+            "collapse": {
+              "_": "搜尋面版 (%d)",
+              "0": "搜尋面版"
+            },
+            "emptyPanes": "沒搜尋面版",
+            "loadMessage": "載入搜尋面版中...",
+            "clearMessage": "清空",
+            "count": "{total}",
+            "countFiltered": "{shown} ({total})",
+            "title": "過濾條件 - %d",
+            "showMessage": "顯示全部",
+            "collapseMessage": "摺疊全部"
+          },
+          "stateRestore": {
+            "emptyError": "名稱不能空白。",
+            "creationModal": {
+              "button": "建立",
+              "columns": {
+                "search": "欄位搜尋",
+                "visible": "欄位顯示"
+              },
+              "name": "名稱：",
+              "order": "排序",
+              "paging": "分頁",
+              "scroller": "卷軸位置",
+              "search": "搜尋",
+              "searchBuilder": "複合查詢",
+              "select": "選擇",
+              "title": "建立新狀態",
+              "toggleLabel": "包含："
+            },
+            "duplicateError": "此狀態名稱已經存在。",
+            "emptyStates": "名稱不可空白。",
+            "removeConfirm": "確定要移除 %s 嗎？",
+            "removeError": "移除狀態失敗。",
+            "removeJoiner": "和",
+            "removeSubmit": "移除",
+            "removeTitle": "移除狀態",
+            "renameButton": "重新命名",
+            "renameLabel": "%s 的新名稱：",
+            "renameTitle": "重新命名狀態"
+          },
+          "select": {
+            "columns": {
+              "_": "選擇了 %d 欄資料",
+              "1": "選擇了 1 欄資料"
+            },
+            "rows": {
+              "1": "選擇了 1 筆資料",
+              "_": "選擇了 %d 筆資料"
+            },
+            "cells": {
+              "1": "選擇了 1 格資料",
+              "_": "選擇了 %d 格資料"
+            }
+          },
+          "zeroRecords": "沒有符合的資料",
+          "aria": {
+            "sortAscending": "：升冪排列",
+            "sortDescending": "：降冪排列"
+          },
+          "info": "顯示第 _START_ 至 _END_ 筆結果，共 _TOTAL_ 筆",
+          "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+          "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+          "infoThousands": ",",
+          "lengthMenu": "顯示 _MENU_ 筆結果",
+          "search": "找關鍵字：",
+          "searchPlaceholder": "請輸入關鍵字",
+          "thousands": ","
+        },
+        columnDefs: [
+          { type: 'chinese-string', targets: [0, 1] }
+        ]
+      });
+    });
+  </script>
+  <!--table end-->
+
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+      <div class="row g-5">
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-white mb-4">
+            <i class="fa fa-building text-primary me-3"></i>中華民國資訊管理學會
+          </h4>
+          <p>
+            成立於民國 79年，係集合群國大專院校資訊管理學門之學者專家與部分資訊業界之精英組合而成。
+          </p>
+
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-light mb-4"><i class="fa fa-map-marker"></i> 會址</h4>
+          <p>
+            <a
+              href="https://www.google.com.tw/maps/place/251%E6%96%B0%E5%8C%97%E5%B8%82%E6%B7%A1%E6%B0%B4%E5%8D%80%E8%8B%B1%E5%B0%88%E8%B7%AF151%E8%99%9F/@25.1732175,121.446974,17z/data=!3m1!4b1!4m6!3m5!1s0x3442aff88cdfea69:0x40adc63d62b9e736!8m2!3d25.1732127!4d121.4495489!16s%2Fg%2F11csm1_t5w?hl=zh-TW&entry=ttu">251301
+              新北市淡水區英專路151號（資管系辦公室）</a>
+          </p>
+          <p>
+            No.151, Yingzhuan Rd., Tamsui Dist., New Taipei City 251301, Taiwan (R.O.C.)
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-light mb-4"><i class="fa fa-envelope"></i> Email</h4>
+          <p>
+            <a href="mailto:csim.service@gmail.com">csim.service@gmail.com</a>
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-light mb-4"><i class="fa fa-phone" aria-hidden="true"></i> TEL</h4>
+          <p>專員：楊先生、林小姐</p>
+          <p>
+            02-26215656 分機 2228
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <div class="container-fluid copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+            <a href="/web/index.html">中華民國資訊管理學會</a>版權所有@2013 CSIM All Rights Reserved.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer End -->
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

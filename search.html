@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多條件搜尋表格</title>
+  <meta content="" name="keywords" />
+  <meta content="" name="description" />
+
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon" />
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
+  <!-- Libraries Stylesheet -->
+  <link href="lib/animate/animate.min.css" rel="stylesheet" />
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/search.css" rel="stylesheet" />
+
+  <!-- Template Stylesheet -->
+  <link href="css/search_style.css" rel="stylesheet" />
+
+  <style>
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 100%;
+      border: 3px solid #983498;
+      border-radius: 20px;
+      overflow: hidden;
+      /* 使圓角生效 */
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f8dcf8;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #fff0ff;
+    }
+
+    tbody tr:hover {
+      background-color: #7a7a7a65;
+    }
+
+    thead {
+      background-color: #d890d8;
+    }
+
+    .search {
+      display: flex;
+      margin-bottom: 8px;
+      background-color: #f1eaf1;
+    }
+
+    .search_con {
+      padding: 8px;
+
+    }
+
+
+    .search_re {
+      padding: 8px !important;
+      color: black;
+      padding-top: 30px !important;
+    }
+
+    .btn {
+      width: 120px !important;
+      height: 25px;
+      border: none;
+      border-radius: 5px;
+      background: #d890d8;
+      color: #353535;
+      font-size: 1rem;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 3px 3px #83767e;
+      padding: 0 20px;
+      cursor: pointer;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+
+    .btn:active {
+      background: #ff8888;
+      color: #ffffff;
+      box-shadow: none;
+      animation: anim 200ms;
+    }
+
+    @keyframes anim {
+      0% {
+        background: radial-gradient(circle at center, rgba(255, 125, 125, 0) 0%, #ffffff 0%, #ffffff 100%);
+      }
+
+      25% {
+        background: radial-gradient(circle at center, rgba(255, 125, 125, 0.3) 24%, #ffffff 25%, #ffffff 100%);
+      }
+
+      50% {
+        background: radial-gradient(circle at center, rgba(255, 125, 125, 0.5) 49%, #ffffff 50%, #ffffff 100%);
+      }
+
+      75% {
+        background: radial-gradient(circle at center, rgba(255, 125, 125, 0.8) 74%, #ffffff 75%, #ffffff 100%);
+      }
+
+      100% {
+        background: radial-gradient(circle at center, #ff8888 99%, #ffffff 100%, #ffffff 100%);
+        color: #ffffff;
+      }
+    }
+
+    a:link {
+
+      text-decoration: none;
+
+    }
+
+    a.item:link {
+
+      text-decoration: none;
+      color: #0a7cce;
+    }
+
+    a.item:visited {
+
+
+      color: rgb(111, 8, 99);
+    }
+
+    a.item:hover {
+
+      text-decoration: underline;
+
+      color: rgb(255, 251, 251);
+    }
+
+    a.item:active {
+
+      text-decoration: none;
+      color: #d42e2e;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Spinner Start -->
+  <div id="spinner"
+    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+  <!-- Spinner End -->
+
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
+    <a href="index.html" class="navbar-brand d-flex align-items-center">
+      <h4 class="m-0">
+        <img src="https://www.csim.org.tw/sites/default/files/CSIM.gif">中華民國資訊管理學會
+      </h4>
+    </a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto py-3 py-lg-0">
+        <a href="index.html" class="nav-item nav-link active">首頁</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">關於協會</a>
+          <div class="dropdown-menu bg-light m-0">
+            <a href="aboutcsim.html" class="dropdown-item">學會簡介</a>
+            <a href="apply.html" class="dropdown-item">申請入會</a>
+            <a href="download.html" class="dropdown-item">各式資料下載</a>
+          </div>
+        </div>
+        <a href="department.html" class="nav-item nav-link">各校資管系所</a>
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">研究及出版品</a>
+          <div class="dropdown-menu bg-light m-0">
+            <a href="https://eclab.nkust.edu.tw/submitjim/" class="dropdown-item">資訊管理學報</a>
+            <a href="search.html" class="dropdown-item">研究會論文集</a>
+          </div>
+        </div>
+        <a href="team.html" class="nav-item nav-link">活動花絮</a>
+        <a href="contact.html" class="nav-item nav-link">聯絡我們</a>
+        <a href="english.html" class="nav-item nav-link">English</a>
+        <a href="" class="nav-item nav-link"></a>
+        <a href="" class="nav-item nav-link"></a>
+        <button href="" class="nav-item nav-link" id="show"
+          style="background-color:#0a0a2300;border:none;width:30px;"><i class="fa fa-user-circle-o"
+            style="font-size:28px;" aria-hidden="true"></i></button>
+        <dialog id="infoModal" style="width: 30%;border:1px;">
+          <button id="close" style="margin-left: 400px;background-color:#ff961f;border:#fff;">X</button>
+          <div class="col-lg-8 col-md-6">
+            <div class="border-start border-5 border-primary ps-4 mb-5">
+              <h4 class="display-6 mb-0">
+                登入
+
+              </h4>
+
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-6">
+            <form>
+              <div class="row g-3">
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="text" class="form-control bg-light border-0" placeholder="請帳號密碼..." />
+                    <label>帳號</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="password" class="form-control bg-light border-0" placeholder="請輸入密碼..." />
+                    <label>密碼</label>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <button class="btn btn-primary w-100 py-3" type=""
+                    style="background-color: rgb(188, 142, 81);border:none;">
+                    還沒有帳號!
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-primary w-100 py-3" type="">
+                    登入
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </dialog>
+        <script>
+          let btn = document.querySelector("#show");
+          let infoModal = document.querySelector("#infoModal");
+          btn.addEventListener("click", function () {
+            infoModal.showModal();
+          })
+          let close = document.querySelector("#close");
+          close.addEventListener("click", function () {
+            infoModal.close();
+          })
+        </script>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center py-5">
+      <h1 class="display-4 text-white animated slideInDown mb-4">研究會論文集</h1>
+      <nav aria-label="breadcrumb animated slideInDown">
+        <ol class="breadcrumb justify-content-center mb-0">
+
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- Page Header End -->
+
+  <!--search table-->
+  <div class="search">
+    <div class="search_con">
+      <label for="name">論文名稱：</label>
+      <input type="text" id="name" data-index="0" onkeyup="searchTable()">
+    </div>
+    <div class="search_con">
+      <label for="forum">研討會：</label>
+      <select id="forum" onchange="searchTable()">
+        <option value="">全部</option>
+        <option value="第十九屆國際資訊管理學術研討會">第十九屆國際資訊管理學術研討會</option>
+        <option value="第十五屆國際資訊管理學術研討會">第十五屆國際資訊管理學術研討會</option>
+
+      </select>
+    </div>
+    <div class="search_con">
+      <label for="area">應用領域：</label>
+      <select id="area" onchange="searchTable()">
+        <option value="">全部</option>
+        <option value="其他資訊管理相關課題">其他資訊管理相關課題</option>
+        <option value="決策支援與專家系統">決策支援與專家系統</option>
+        <option value="資訊管理">資訊管理</option>
+        <option value="通訊網路技術">通訊網路技術</option>
+      </select>
+    </div>
+    <div class="search_con">
+      <label for="author">作者：</label>
+      <input type="text" id="author" data-index="2" onkeyup="searchTable()">
+    </div>
+    <div class="search_con">
+      <label for="keyword">關鍵字：</label>
+      <select id="keyword" onchange="searchTable()">
+        <option value="">全部</option>
+        <option value="AES">AES</option>
+        <option value="CA">CA</option>
+        <option value="Cluster">Cluster</option>
+        <option value="Context Awareness">email virus detection</option>
+        <option value="IC卡">IC卡</option>
+        <option value="network security">network security</option>
+        <option value="PHP">PHP</option>
+        <option value="PKI">PKI</option>
+        <option value="RSA">RSA</option>
+        <option value="self-organizing maps">self-organizing maps</option>
+        <option value="SNMP">SNMP</option>
+        <option value="Web Service">Web Service</option>
+        <option value="WWW">WWW</option>
+        <option value="人力資源管理">人力資源管理</option>
+        <option value="位置資訊">位置資訊</option>
+        <option value="併購企業">併購企業</option>
+        <option value="供應商知識">供應商知識</option>
+        <option value="個案庫決策支援系統">個案庫決策支援系統</option>
+        <option value="動態查詢">動態查詢</option>
+        <option value="協同過濾">協同過濾</option>
+        <option value="媒體存取層">媒體存取層</option>
+        <option value="定址化服務">定址化服務</option>
+        <option value="控制頻道">控制頻道</option>
+        <option value="推薦系統">推薦系統</option>
+        <option value="效能">效能</option>
+        <option value="效能管理">效能管理</option>
+        <option value="服務品質">服務品質</option>
+        <option value="服務搜尋">服務搜尋</option>
+        <option value="查詢系統">查詢系統</option>
+        <option value="消費者行為">消費者行為</option>
+        <option value="無基礎建設的網路結構">無基礎建設的網路結構</option>
+        <option value="無線區域網路">無線區域網路</option>
+        <option value="無線智慧網路">無線智慧網路</option>
+        <option value="無線隨意網路">無線隨意網路</option>
+        <option value="知識鏈">知識鏈</option>
+        <option value="競爭者知識">競爭者知識</option>
+        <option value="網域名稱伺服器">網域名稱伺服器</option>
+        <option value="網路最適化模式">網路最適化模式</option>
+        <option value="自製與委外決策模">自製與委外決策模式</option>
+        <option value="蜂巢式階層管理架構">蜂巢式階層管理架構</option>
+        <option value="行動付款">行動付款</option>
+        <option value="行動代理人">行動代理人</option>
+        <option value="行動服務">行動服務</option>
+        <option value="行動設備">行動設備</option>
+        <option value="資料頻道">資料頻道</option>
+        <option value="資訊整合">資訊整合</option>
+        <option value="資訊管理">資訊管理</option>
+        <option value="隨意式無線網路">隨意式無線網路</option>
+        <option value="電子商務">電子商務</option>
+        <option value="非集中式點對點網路">非集中式點對點網路</option>
+        <option value="預付服務">預付服務</option>
+        <option value="顧客知識">顧客知識</option>
+        <option value="點對點">點對點</option>
+      </select>
+    </div>
+    <div class="search_re">
+      <button href="javascript: void(0)" class="btn" onclick="resetSearch()">
+        <i class="fa fa-undo" aria-hidden="true"></i>重置
+      </button>
+    </div>
+  </div>
+  <div id="pagination" style="margin-top: 20px;margin-bottom: 20px;text-align:center"></div>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>論文名稱</th>
+        <th>研討會</th>
+        <th>應用領域</th>
+        <th>作者</th>
+        <th>關鍵字</th>
+        <th>論文下載</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>併購企業資訊系統整合自製與委外決策模式研究</td>
+        <td>第十九屆<br>國際資訊管理學術研討會</td>
+        <td>資訊<br>管理</td>
+        <td><u>盧春芳</u>, <u>黃世禎</u>, <u>傅上珍</u></td>
+        <td>併購企業, 資訊整合, 自製與委外決策模式</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20080002.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20080002.pdf</a></td>
+      </tr>
+      <tr>
+        <td>知識鏈之探討: 以顧客、供應商與競爭者</td>
+        <td>第十九屆<br>國際資訊管理學術研討會</td>
+        <td>資訊<br>管理</td>
+        <td><u>曾淑美</u> , <u>吳俊儀</u></td>
+        <td>知識鏈, 顧客知識, 供應商知識, 競爭者知識</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20080001_2.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20080001.pdf</a></td>
+      </tr>
+      <tr>
+        <td>Web Service與定位技術的整合及應用</td>
+        <td>第十五屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路<br>技術</td>
+        <td><u>卓忠志</u>, <u>潘志勝</u>, <u>古東明</u></td>
+        <td>Context Awareness, Web Service, 位置資訊</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040011.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20040011.pdf</a></td>
+      </tr>
+      <tr>
+        <td>無線區域網路之位置導向服務品質監測</td>
+        <td>第十九屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路<br>技術</td>
+        <td><u>陳彥錚</u>, <u>陳秋彰</u></td>
+        <td>無線區域網路, 服務品質, 效能管理, SNMP</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040010.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20040010.pdf</a></td>
+      </tr>
+      <tr>
+        <td>非集中式點對點環境下之快速與低頻寬需求的服務搜尋方法設計</td>
+        <td>第十五屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路<br>技術</td>
+        <td><u>陳青文</u>, <u>楊朝翔</u>, <u>顏佩詩</u></td>
+        <td>點對點, 網域名稱伺服器, 非集中式點對點網路, 服務搜尋</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040009.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20040009.pdf</a></td>
+      </tr>
+      <tr>
+        <td>在多重通道隨意網路上利用控制與資料通道頻寬比例使效能最大化之策略</td>
+        <td>第十五屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路技術</td>
+        <td><u>陳青文</u>, <u>方清宏</u>, <u>賴俊良</u>, <u>洪瑞聰</u></td>
+        <td>無線隨意網路, 媒體存取層, 效能, 資料頻道, 控制頻道</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040008.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20040008.pdf</a></td>
+      </tr>
+      <tr>
+        <td>Misuse Detection of New Malicious Emails</td>
+        <td>第十五屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路技術</td>
+        <td>Dong-Her Shih, Chun-Pin Chang, Hsiu-Sen Chiang</td>
+        <td>email virus detection, self-organizing maps, network security</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040007.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20040007.pdf</a></td>
+      </tr>
+      <tr>
+        <td>協同過濾技術在商品推薦系統上之應用與成效評估</td>
+        <td>第十五屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路技術</td>
+        <td><u>吳肇銘</u>, <u>金志聿</u>, <u>林怡秀</u></td>
+        <td>電子商務, 消費者行為, 協同過濾, 推薦系統</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040006.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20040006.pdf</a></td>
+      </tr>
+      <tr>
+        <td>結合IC卡之校園安全網頁系統的設計與實現</td>
+        <td>第十五屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路技術</td>
+        <td><u>陳軒正</u>, <u>楊中皇</u></td>
+        <td>IC卡, WWW, AES, RSA, PHP</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040005.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20040005.pdf</a></td>
+      </tr>
+      <tr>
+        <td>以電力能源為基礎的蜂巢式階層管理</td>
+        <td>第十五屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路技術</td>
+        <td><u>王淑卿</u>, <u>嚴國慶</u>, <u>周雨韻</u></td>
+        <td>隨意式無線網路, 無基礎建設的網路結構, 蜂巢式階層管理架構, 行動代理人, 行動設備</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040004.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20040004.pdf</a></td>
+      </tr>
+      <tr>
+        <td>行動商務應用之動態使用者查詢系統</td>
+        <td>第十五屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路技術</td>
+        <td><u>翁頌舜</u>, <u>周羿禛</u></td>
+        <td>定址化服務, 動態查詢, 查詢系統, 行動服務P</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040003.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 0040003.pdf</a></td>
+      </tr>
+      <tr>
+        <td>Resilient and Robust Key Management for Mobile Ad Hoc Networks</td>
+        <td>第十五屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路技術</td>
+        <td>Hua-Yi Lin, Yueh-Min Huang</td>
+        <td>PKI, CA, Cluster</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040002.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20040002.pdf</a></td>
+      </tr>
+      <tr>
+        <td>行動網路環境下付款機制之研究</td>
+        <td>第十五屆<br>國際資訊管理學術研討會</td>
+        <td>通訊網路技術</td>
+        <td><u>羅濟群</u>, <u>黃俊龍</u></td>
+        <td>預付服務, 行動付款, 無線智慧網路</td>
+        <td><a class="item" href="https://www.csim.org.tw/sites/default/files/paper/20040001.pdf"><i
+              class="fa fa-file-pdf-o" aria-hidden="true" style="color: red;"></i> 20040001.pdf</a></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+  <script>
+    var itemsPerPage = 5; // 每頁顯示的項目數量
+    var currentPage = 0; // 目前所在的頁面，從 0 開始
+    var table = document.getElementById("dataTable");
+    var tr = table.getElementsByTagName("tr");
+    var totalPages = Math.ceil((tr.length - 1) / itemsPerPage); // 總頁數
+
+    function showPage(page) {
+      for (var i = 1; i < tr.length; i++) {
+        if (i > page * itemsPerPage && i <= (page + 1) * itemsPerPage) {
+          tr[i].style.display = "table-row";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+
+    function goToPage(page) {
+      if (page < 0) {
+        currentPage = 0;
+      } else if (page >= totalPages) {
+        currentPage = totalPages - 1;
+      } else {
+        currentPage = page;
+      }
+      showPage(currentPage);
+      updatePagination();
+    }
+
+    function nextPage() {
+      goToPage(currentPage + 1);
+    }
+
+    function prevPage() {
+      goToPage(currentPage - 1);
+    }
+
+    function firstPage() {
+      goToPage(0);
+    }
+
+    function lastPage() {
+      goToPage(totalPages - 1);
+    }
+
+    function updatePagination() {
+      var pagination = document.getElementById("pagination");
+      pagination.innerHTML = `
+                <button href="javascript: void(0)" class="btn" onclick="firstPage()"><i class="fa fa-angle-double-left" aria-hidden="true"></i>  第一頁</button>
+                <button href="javascript: void(0)" class="btn" onclick="prevPage()"><i class="fa fa-angle-left" aria-hidden="true"></i>  上一頁</button>
+                <span>第 ${currentPage + 1} 頁 / 共 ${totalPages} 頁</span>
+                <button href="javascript: void(0)" class="btn" onclick="nextPage()">下一頁  <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                <button href="javascript: void(0)" class="btn"  onclick="lastPage()">最後一頁  <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+            `;
+    }
+
+    // 初始顯示第一頁
+    showPage(currentPage);
+    updatePagination();
+
+    function searchTable() {
+      var name, forum, area, author, keyword, table, tr, td, i, j, txtValue, filterName, filterForum, filterArea, filterAuthor, filterKeyword;
+      name = document.getElementById("name");
+      forum = document.getElementById("forum");
+      area = document.getElementById("area");
+      author = document.getElementById("author");
+      keyword = document.getElementById("keyword");
+
+
+      table = document.getElementById("dataTable");
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 1; i < tr.length; i++) {
+        tr[i].style.display = "table-row"; // 重置行的顯示
+
+        txtValue = tr[i].getElementsByTagName("td")[0].textContent || tr[i].getElementsByTagName("td")[0].innerText;
+        filterName = name.value.toUpperCase();
+        filterForum = forum.value.toUpperCase();
+        filterArea = area.value.toUpperCase();
+        filterAuthor = author.value.toUpperCase();
+        filterKeyword = keyword.value.toUpperCase();
+
+
+
+        if (txtValue.toUpperCase().indexOf(filterName) === -1 ||
+          (filterArea !== "" && tr[i].getElementsByTagName("td")[2].textContent.toUpperCase() !== filterArea) ||
+          (filterForum !== "" && tr[i].getElementsByTagName("td")[1].textContent.toUpperCase() !== filterForum) ||
+          tr[i].getElementsByTagName("td")[3].textContent.toUpperCase().indexOf(filterAuthor) === -1 ||
+          (filterKeyword !== "" && !tr[i].getElementsByTagName("td")[4].textContent.toUpperCase().includes(filterKeyword))) {
+          tr[i].style.display = "none"; // 不符合條件，隱藏行
+        }
+
+      }
+    }
+
+    function resetSearch() {
+      document.getElementById("name").value = "";
+      document.getElementById("area").value = "";
+      document.getElementById("author").value = "";
+      document.getElementById("keyword").value = "";
+      document.getElementById("forum").value = "";
+
+      // 重置後顯示第一頁的內容
+      currentPage = 0;
+      showPage(currentPage);
+      updatePagination();
+    }
+  </script>
+  <!--search table-->
+
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+      <div class="row g-5">
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-white mb-4">
+            <i class="fa fa-building text-primary me-3"></i>中華民國資訊管理學會
+          </h4>
+          <p>
+            成立於民國 79年，係集合群國大專院校資訊管理學門之學者專家與部分資訊業界之精英組合而成。
+          </p>
+
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-light mb-4"><i class="fa fa-map-marker"></i> 會址</h4>
+          <p>
+            <a
+              href="https://www.google.com.tw/maps/place/251%E6%96%B0%E5%8C%97%E5%B8%82%E6%B7%A1%E6%B0%B4%E5%8D%80%E8%8B%B1%E5%B0%88%E8%B7%AF151%E8%99%9F/@25.1732175,121.446974,17z/data=!3m1!4b1!4m6!3m5!1s0x3442aff88cdfea69:0x40adc63d62b9e736!8m2!3d25.1732127!4d121.4495489!16s%2Fg%2F11csm1_t5w?hl=zh-TW&entry=ttu">251301
+              新北市淡水區英專路151號（資管系辦公室）</a>
+          </p>
+          <p>
+            No.151, Yingzhuan Rd., Tamsui Dist., New Taipei City 251301, Taiwan (R.O.C.)
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-light mb-4"><i class="fa fa-envelope"></i> Email</h4>
+          <p>
+            <a href="mailto:csim.service@gmail.com">csim.service@gmail.com</a>
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-light mb-4"><i class="fa fa-phone" aria-hidden="true"></i> TEL</h4>
+          <p>專員：楊先生、林小姐</p>
+          <p>
+            02-26215656 分機 2228
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <div class="container-fluid copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+            <a href="/web/index.html">中華民國資訊管理學會</a>版權所有@2013 CSIM All Rights Reserved.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer End -->
+
+  <!-- Back to Top -->
+  <a href="#" class="btn1 btn1-lg btn1-primary btn1-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

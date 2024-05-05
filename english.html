@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>CSIM - 各校資管系所</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
+
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--datatable-->
+    <link rel="stylesheet" href="css/aboutcsim1.css">
+    <link rel="stylesheet" href="css/aboutcsim2.css" />
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/aboutcsim_style.css" rel="stylesheet" />
+    <style>
+        /* 背景遮罩 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* 彈出窗口 */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        /* 關閉按鈕 */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <h4 class="m-0">
+                <img src="https://www.csim.org.tw/sites/default/files/CSIM.gif">中華民國資訊管理學會
+            </h4>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-3 py-lg-0">
+                <a href="index.html" class="nav-item nav-link active">首頁</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">關於協會</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="aboutcsim.html" class="dropdown-item">學會簡介</a>
+                        <a href="apply.html" class="dropdown-item">申請入會</a>
+                        <a href="download.html" class="dropdown-item">各式資料下載</a>
+                    </div>
+                </div>
+                <a href="department.html" class="nav-item nav-link">各校資管系所</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">研究及出版品</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="https://eclab.nkust.edu.tw/submitjim/" class="dropdown-item">資訊管理學報</a>
+                        <a href="search.html" class="dropdown-item">研究會論文集</a>
+                    </div>
+                </div>
+                <a href="team.html" class="nav-item nav-link">活動花絮</a>
+                <a href="contact.html" class="nav-item nav-link">聯絡我們</a>
+                <a href="english.html" class="nav-item nav-link">English</a>
+                <a href="" class="nav-item nav-link"></a>
+                <a href="" class="nav-item nav-link"></a>
+                <button href="" class="nav-item nav-link" id="show"
+                    style="background-color:#0a0a2300;border:none;width:30px;"><i class="fa fa-user-circle-o"
+                        style="font-size:28px;" aria-hidden="true"></i></button>
+                <dialog id="infoModal" style="width: 30%;border:1px;">
+                    <button id="close" style="margin-left: 400px;background-color:#ff961f;border:#fff;">X</button>
+                    <div class="col-lg-8 col-md-6">
+                        <div class="border-start border-5 border-primary ps-4 mb-5">
+                            <h4 class="display-6 mb-0">
+                                登入
+
+                            </h4>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-6">
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control bg-light border-0"
+                                            placeholder="請帳號密碼..." />
+                                        <label>帳號</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control bg-light border-0"
+                                            placeholder="請輸入密碼..." />
+                                        <label>密碼</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <button class="btn btn-primary w-100 py-3" type=""
+                                        style="background-color: rgb(188, 142, 81);border:none;">
+                                        還沒有帳號!
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-primary w-100 py-3" type="">
+                                        登入
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </dialog>
+                <script>
+                    let btn = document.querySelector("#show");
+                    let infoModal = document.querySelector("#infoModal");
+                    btn.addEventListener("click", function () {
+                        infoModal.showModal();
+                    })
+                    let close = document.querySelector("#close");
+                    close.addEventListener("click", function () {
+                        infoModal.close();
+                    })
+                </script>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center py-5">
+            <h1 class="display-4 text-white animated slideInDown mb-4">English Version</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item">
+                        <a class="text-white" href="#text"><i class="fa fa-info-circle" aria-hidden="true"
+                                style="color: rgb(245, 209, 161);"></i> Profile</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="text-white" href="#task"><i class="fa fa-thumb-tack" aria-hidden="true"
+                                style="color: rgb(245, 209, 161);"></i> Duties</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="text-white" href="#leader"><i class="fa fa-users" aria-hidden="true"
+                                style="color: rgb(245, 209, 161);"></i> History of Chairmen</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="text-white" href="#activity"><i class="fa fa-handshake-o" aria-hidden="true"
+                                style="color: rgb(245, 209, 161);"></i> History of Activities</a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- About Start -->
+    <div class="container-xxl py-5" id="text">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="position-relative overflow-hidden ps-5 pt-5 h-100" style="min-height: 400px">
+
+                        <div class="position-absolute top-0 start-0 bg-white pe-3 pb-3"
+                            style="width: 200px; height: 200px">
+
+
+                            <div class="d-flex flex-column justify-content-center text-center bg-primary h-100 p-3">
+                                <h1 class="text-white">Profile</h1>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="h-100">
+                        <div class="border-start border-5 border-primary ps-4 mb-5">
+                            <h3 class="text-body text-uppercase mb-2">About Us</h3>
+                            <p>
+                            <ul>
+
+                                <li>CSIM is an academic research society registered with the Ministry of the Interior
+                                    from 1990.</li>
+                                <li>The main members of the society are professors and chairmen of the Department of
+                                    Information Management in Taiwan.</li>
+                                <li>There are 120 Departments of Information Management of 162 Universities and Colleges
+                                    in Taiwan.</li>
+                            </ul>
+                            </p>
+                        </div>
+
+                        <div class="border-top mt-4 pt-4">
+                            <div class="row g-4">
+                                <div class="col-sm-4 d-flex wow fadeIn" data-wow-delay="0.1s">
+                                    <i class="fa fa-check fa-2x text-primary flex-shrink-0 me-3"></i>
+                                    <h7 class="mb-0">The mission of CSIM is to promote the development of the study of
+                                        information management and its practical applications, to integrate the theories
+                                        and practices of information management and to improve the levels of information
+                                        management education.
+                                    </h7>
+                                </div>
+                                <div class="col-sm-4 d-flex wow fadeIn" data-wow-delay="0.3s">
+                                    <i class="fa fa-check fa-2x text-primary flex-shrink-0 me-3"></i>
+                                    <h7 class="mb-0">To make the Chinese Society of Information Management be an
+                                        extremely lively and influential academic group.</h7>
+                                </div>
+                                <div class="col-sm-4 d-flex wow fadeIn" data-wow-delay="0.5s">
+                                    <i class="fa fa-check fa-2x text-primary flex-shrink-0 me-3"></i>
+                                    <h7 class="mb-0">To increase public awareness of the information management
+                                        discipline, to increase the education levels of information management
+                                        professionals and to help industry and education work together to enhance
+                                        quality.</h7>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- 任務 Start -->
+    <div class="wow fadeIn" style="background-color: #ff961f; 
+  background-image: linear-gradient(to right, #ff961f, #ffffff);
+  " data-wow-delay="0.5s" id="task">
+        <p class=" box10" style="font-size:55px;color:#ffffff;padding-left:100px">Duties</p>
+    </div>
+    <div class="container-fluid my-5 p-0">
+        <div class="row g-0">
+            <div class="col-3 wow fadeIn" data-wow-delay="0.9s">
+                <div class="position-relative">
+                    <img class="img-fluid w-100" src="img/fact-1.jpg" alt="" />
+                    <div class="facts-overlay">
+                        <h1 class="">01</h1>
+                        <h5 class="text-white mb-3">To engage in research on the integration of the study of information
+                            management and its practical applications.</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 wow fadeIn" data-wow-delay="0.9s">
+                <div class="position-relative">
+                    <img class="img-fluid w-100" src="img/fact-1.jpg" alt="" />
+                    <div class="facts-overlay">
+                        <h1 class="display-1">02</h1>
+                        <h5 class="text-white " style="margin-bottom: -1px;">To hold and participate in domestic and
+                            international academic conferences and activities relating to the study of information
+                            management.</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 wow fadeIn" data-wow-delay="1.1s">
+                <div class="position-relative">
+                    <img class="img-fluid w-100" src="img/fact-2.jpg" alt="" />
+                    <div class="facts-overlay">
+                        <h1 class="display-1">03</h1>
+                        <h5 class="text-white mb-3">To propose curriculum structures for courses on information
+                            management.</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 wow fadeIn" data-wow-delay="1.3s">
+                <div class="position-relative">
+                    <img class="img-fluid w-100" src="img/fact-3.jpg" alt="" />
+                    <div class="facts-overlay">
+                        <h1 class="display-1">04</h1>
+                        <h5 class="text-white mb-3">To provide professional education for learners of information
+                            management studies.</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 wow fadeIn" data-wow-delay="1.5s">
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div class="container-fluid my-5 p-0">
+        <div class="row g-0">
+           
+           
+         
+            <div class="col-3 wow fadeIn" data-wow-delay="0.7s">
+                <div class="position-relative">
+                    <img class="img-fluid w-100" src="img/fact-3.jpg" alt="" />
+                    <div class="facts-overlay">
+                        <h1 class="display-1">05</h1>
+                        <h5 class="text-white" style="margin-bottom: 30px;">To publish academic journals and to write
+                            and translate series of books.</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 wow fadeIn" data-wow-delay="0.9s">
+                <div class="position-relative">
+                    <img class="img-fluid w-100" src="img/fact-4.jpg" alt="" />
+                    <div class="facts-overlay">
+                        <h1 class="display-1">06</h1>
+                        <h5 class="text-white " style="margin-bottom: -40px;">To engage in information management
+                            research, consultation, and services on commission from government and non-governmental
+                            organizations.</h5>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 wow fadeIn" data-wow-delay="1.1s">
+                <div class="position-relative">
+                    <img class="img-fluid w-100" src="img/fact-4.jpg" alt="" />
+                    <div class="facts-overlay">
+                        <h1 class="display-1">07</h1>
+                        <h5 class="text-white ">To conduct other activities in alignment with the mission of the
+                            Society.</h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 任務 End -->
+    <hr style="color:rgb(235, 130, 3);height: 2px;" id="leader">
+    <!-- 歷任理事長 Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="position-relative overflow-hidden ps-5 pt-5 h-100" style="min-height: 400px">
+
+                        <div class="position-absolute top-0 start-0 bg-white pe-3 pb-3"
+                            style="width: 300px; height: 100px">
+
+
+                            <div class="d-flex flex-column justify-content-center text-center bg-primary h-100 p-3">
+                                <h2 class="text-white">History of Chairmen</h2>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s" style="background-color: rgb(249, 233, 197);">
+                    <div class="h-100">
+                        <div class="border-start border-5 border-primary ps-4 mb-5">
+                            <p>
+                            <ul>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>2015~, 14th, I.F.M. Department of Taipei University of Technology, Dr. Weng,
+                                        Sung-Shun</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>2013~2015, 13th, I.M. Department of Natioanl University, Dr. Yu, chang-Sung</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>2011~2013, 12th, I.M. Department of Natioanl University, Dr. Yu, chang-Sung</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>2009~2011, 11th, I.M. Department of Fu Jen University, Dr. Yang, Ming-San</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>2007-2009, 10th, I.M. Department of Fu Jen University, Dr. Yang, Ming-San</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>2005~2007, 9th, I.M. Department of Tamkang University, Dr. Hwang, Ming-Dar</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>2003~2005, 8th, I.M. Department of Tamkang University, Dr. Hwang, Ming-Dar</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>2001~2003, 7th, I.M. Department of National Chengchi University, Dr. Chou,
+                                        Shrane-Koung</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>1999~2001, 6th, I.M. Department of National Chengchi University, Dr. Chou,
+                                        Shrane-Koung</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>1997~1999, 5th, I.M. Department of Yuan Ze University, Dr. Cheng, Feng-Shen</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>1995~1997, 4th, I.M. Department of National Central University, Dr. Farn,
+                                        Cheng-Kiang</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>1993~1995, 3rd, I.M. Department of National Central University, Dr. Farn,
+                                        Cheng-Kiang</h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>1991~1993, 2nd, I.M. Department of National Central University, Dr. Sung, Kai
+                                    </h6>
+                                </li>
+                                <li style="list-style-image: linear-gradient(0deg, #ffe9d4, #cc6600); ">
+                                    <h6>1990~1991, 1st, I.M. Department of National Central University, Dr. Sung, Kai
+                                    </h6>
+                                </li>
+
+                                </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--歷任理事長 End-->
+
+    <!--活動 Start-->
+    <div class="wow fadeIn" style="background-color: #ff961f; 
+   background-image: linear-gradient(to right, #4ac4fc,#ffffff);
+   " data-wow-delay="0.5s" id="activity">
+        <p class=" box11" style="font-size:55px;color:#ffffff;padding-left:100px">History of Activities</p>
+    </div>
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class=" wow fadeInUp" data-wow-delay="0.1s">
+                    <button class="accordion">International Conference on Information Management</button>
+                    <div class="panel">
+                        <p style="margin-top: 20px; color:rgb(81, 81, 81)">
+                            This conference has been held annually for 17 years. The article submission for this
+                            conference has grown to more than 500 articles with an acceptance rate of approximately 40%.
+                            There were nearly 1,000 participants from all industries in this event.</p>
+                        <!--table start-->
+                        <div class="">
+                            <table id="myTable" class="display hover cell-border row-border stripe">
+                                <thead>
+                                    <tr>
+                                        <th>Period</th>
+                                        <th>Hold University</th>
+                                        <th>Year</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd views-row-first">
+                                        <td class="views-field views-field-title">1.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Sun Yat-Sen
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">1990</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">2.</td>
+                                        <td class="views-field views-field-field-dept-dir">Fu Jen Catholic University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">1991</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">3.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chiao Tung
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">1992</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">4.</td>
+                                        <td class="views-field views-field-field-dept-dir">Ming Chuan University</td>
+                                        <td class="views-field views-field-field-dept">1993</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">5.</td>
+                                        <td class="views-field views-field-field-dept-dir">Tamkang University</td>
+                                        <td class="views-field views-field-field-dept">1994</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">6.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Central University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">1995</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">7.</td>
+                                        <td class="views-field views-field-field-dept-dir">Chung Yuan Christian
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">1996</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">8.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chengchi University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">1997</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">9.</td>
+                                        <td class="views-field views-field-field-dept-dir">Yuan Ze University</td>
+                                        <td class="views-field views-field-field-dept">1998</td>
+                                    </tr>
+                                    <tr class="even views-row-last">
+                                        <td class="views-field views-field-title">10.</td>
+                                        <td class="views-field views-field-field-dept-dir">Central Police University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">1999</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">11.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Sun Yat-Sen
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">2000</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">12.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Taiwan University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">2001</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">13.</td>
+                                        <td class="views-field views-field-field-dept-dir">Tamkang University</td>
+                                        <td class="views-field views-field-field-dept">2002</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">14.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chung Cheng
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">2003</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">15.</td>
+                                        <td class="views-field views-field-field-dept-dir">Chung Yuan Christian
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">2004</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">16.</td>
+                                        <td class="views-field views-field-field-dept-dir">Fu Jen Catholic University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">2005</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">17.</td>
+                                        <td class="views-field views-field-field-dept-dir">I-Shou University</td>
+                                        <td class="views-field views-field-field-dept">2006</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">18.</td>
+                                        <td class="views-field views-field-field-dept-dir">Ming Chuan University</td>
+                                        <td class="views-field views-field-field-dept">2007</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">19.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chi Nan University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">2008</td>
+                                    </tr>
+                                    <tr class="even views-row-last">
+                                        <td class="views-field views-field-title">20.</td>
+                                        <td class="views-field views-field-field-dept-dir">Shih Hsin University</td>
+                                        <td class="views-field views-field-field-dept">2009</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">21.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chen Kung University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">2010</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">22.</td>
+                                        <td class="views-field views-field-field-dept-dir">Chaoyang University of
+                                            Technology</td>
+                                        <td class="views-field views-field-field-dept">2011</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">23.</td>
+                                        <td class="views-field views-field-field-dept-dir">Nationa Ksohsiung University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">2012</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">24.</td>
+                                        <td class="views-field views-field-field-dept-dir">Aletheia University</td>
+                                        <td class="views-field views-field-field-dept">2013</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">25.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chung Hsing
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">2014</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">26.</td>
+                                        <td class="views-field views-field-field-dept-dir">Tatung University</td>
+                                        <td class="views-field views-field-field-dept">2015</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">27.</td>
+                                        <td class="views-field views-field-field-dept-dir">Providence University</td>
+                                        <td class="views-field views-field-field-dept">2016</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">28.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chengchi University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">2017</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">29.</td>
+                                        <td class="views-field views-field-field-dept-dir">Tunghai University</td>
+                                        <td class="views-field views-field-field-dept">2018</td>
+                                    </tr>
+                                    <tr class="even views-row-last">
+                                        <td class="views-field views-field-title">30.</td>
+                                        <td class="views-field views-field-field-dept-dir">Fu Jen Catholic University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">2019</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">31.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chiayi University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">2020</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">32.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Taipei University of
+                                            Technology</td>
+                                        <td class="views-field views-field-field-dept">2021</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">33.</td>
+                                        <td class="views-field views-field-field-dept-dir">Shih Chien University</td>
+                                        <td class="views-field views-field-field-dept">2022</td>
+                                    </tr>
+                                    <tr class="even  views-row-last">
+                                        <td class="views-field views-field-title">34.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Sun Yat-Sen
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">2023</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--datatable-->
+                        <script>
+                            // 自訂中文筆畫排序函式
+                            //中文排序
+                            jQuery.fn.dataTableExt.oSort['chinese-string-asc'] = function (s1, s2) {
+                                return s1.localeCompare(s2);  //chinese-string的排序是根据中文Unicode码点来排序的，而不是根据中文字符的筆劃数。這表示會根據Unicode編碼來進行排序，而不是根據中文字符的筆劃數。
+                            };
+                            jQuery.fn.dataTableExt.oSort['chinese-string-desc'] = function (s1, s2) {
+                                return s2.localeCompare(s1);
+                            };
+                            $(document).ready(function () {
+                                $('#myTable').DataTable({
+                                    "aLengthMenu": [5,10,20,50],
+                                    'iDisplayLength': 5, 
+                                    //中文化
+                                    "language": {
+                                        "processing": "處理中...",
+                                        "loadingRecords": "載入中...",
+                                        "paginate": {
+                                            "first": "第一頁",
+                                            "previous": "上一頁",
+                                            "next": "下一頁",
+                                            "last": "最後一頁"
+                                        },
+                                        "emptyTable": "目前沒有資料",
+                                        "datetime": {
+                                            "previous": "上一頁",
+                                            "next": "下一頁",
+                                            "hours": "時",
+                                            "minutes": "分",
+                                            "seconds": "秒",
+                                            "amPm": [
+                                                "上午",
+                                                "下午"
+                                            ],
+                                            "unknown": "未知",
+                                            "weekdays": [
+                                                "週日",
+                                                "週一",
+                                                "週二",
+                                                "週三",
+                                                "週四",
+                                                "週五",
+                                                "週六"
+                                            ],
+                                            "months": [
+                                                "一月",
+                                                "二月",
+                                                "三月",
+                                                "四月",
+                                                "五月",
+                                                "六月",
+                                                "七月",
+                                                "八月",
+                                                "九月",
+                                                "十月",
+                                                "十一月",
+                                                "十二月"
+                                            ]
+                                        },
+                                        "searchBuilder": {
+                                            "add": "新增條件",
+                                            "condition": "條件",
+                                            "deleteTitle": "刪除過濾條件",
+                                            "button": {
+                                                "_": "複合查詢 (%d)",
+                                                "0": "複合查詢"
+                                            },
+                                            "clearAll": "清空",
+                                            "conditions": {
+                                                "array": {
+                                                    "contains": "含有",
+                                                    "equals": "等於",
+                                                    "empty": "空值",
+                                                    "not": "不等於",
+                                                    "notEmpty": "非空值",
+                                                    "without": "不含"
+                                                },
+                                                "date": {
+                                                    "after": "大於",
+                                                    "before": "小於",
+                                                    "between": "在其中",
+                                                    "empty": "為空",
+                                                    "equals": "等於",
+                                                    "not": "不為",
+                                                    "notBetween": "不在其中",
+                                                    "notEmpty": "不為空"
+                                                },
+                                                "number": {
+                                                    "between": "在其中",
+                                                    "empty": "為空",
+                                                    "equals": "等於",
+                                                    "gt": "大於",
+                                                    "gte": "大於等於",
+                                                    "lt": "小於",
+                                                    "lte": "小於等於",
+                                                    "not": "不為",
+                                                    "notBetween": "不在其中",
+                                                    "notEmpty": "不為空"
+                                                },
+                                                "string": {
+                                                    "contains": "含有",
+                                                    "empty": "為空",
+                                                    "endsWith": "字尾為",
+                                                    "equals": "等於",
+                                                    "not": "不為",
+                                                    "notEmpty": "不為空",
+                                                    "startsWith": "字首為",
+                                                    "notContains": "不含",
+                                                    "notStartsWith": "開頭不是",
+                                                    "notEndsWith": "結尾不是"
+                                                }
+                                            },
+                                            "data": "欄位",
+                                            "leftTitle": "群組條件",
+                                            "logicAnd": "且",
+                                            "logicOr": "或",
+                                            "rightTitle": "取消群組",
+                                            "title": {
+                                                "_": "複合查詢 (%d)",
+                                                "0": "複合查詢"
+                                            },
+                                            "value": "內容"
+                                        },
+                                        "editor": {
+                                            "close": "關閉",
+                                            "create": {
+                                                "button": "新增",
+                                                "title": "新增資料",
+                                                "submit": "送出新增"
+                                            },
+                                            "remove": {
+                                                "button": "刪除",
+                                                "title": "刪除資料",
+                                                "submit": "送出刪除",
+                                                "confirm": {
+                                                    "_": "您確定要刪除您所選取的 %d 筆資料嗎？",
+                                                    "1": "您確定要刪除您所選取的 1 筆資料嗎？"
+                                                }
+                                            },
+                                            "error": {
+                                                "system": "系統發生錯誤(更多資訊)"
+                                            },
+                                            "edit": {
+                                                "button": "修改",
+                                                "title": "修改資料",
+                                                "submit": "送出修改"
+                                            },
+                                            "multi": {
+                                                "title": "多重值",
+                                                "info": "您所選擇的多筆資料中，此欄位包含了不同的值。若您想要將它們都改為同一個值，可以在此輸入，要不然它們會保留各自原本的值。",
+                                                "restore": "復原",
+                                                "noMulti": "此輸入欄需單獨輸入，不容許多筆資料一起修改"
+                                            }
+                                        },
+                                        "autoFill": {
+                                            "cancel": "取消"
+                                        },
+                                        "buttons": {
+                                            "copySuccess": {
+                                                "_": "複製了 %d 筆資料",
+                                                "1": "複製了 1 筆資料"
+                                            },
+                                            "copyTitle": "已經複製到剪貼簿",
+                                            "excel": "Excel",
+                                            "pdf": "PDF",
+                                            "print": "列印",
+                                            "copy": "複製",
+                                            "colvis": "欄位顯示",
+                                            "colvisRestore": "重置欄位顯示",
+                                            "csv": "CSV",
+                                            "pageLength": {
+                                                "-1": "顯示全部",
+                                                "_": "顯示 %d 筆"
+                                            },
+                                            "createState": "建立狀態",
+                                            "removeAllStates": "移除所有狀態",
+                                            "removeState": "移除",
+                                            "renameState": "重新命名",
+                                            "savedStates": "儲存狀態",
+                                            "stateRestore": "狀態 %d",
+                                            "updateState": "更新"
+                                        },
+                                        "searchPanes": {
+                                            "collapse": {
+                                                "_": "搜尋面版 (%d)",
+                                                "0": "搜尋面版"
+                                            },
+                                            "emptyPanes": "沒搜尋面版",
+                                            "loadMessage": "載入搜尋面版中...",
+                                            "clearMessage": "清空",
+                                            "count": "{total}",
+                                            "countFiltered": "{shown} ({total})",
+                                            "title": "過濾條件 - %d",
+                                            "showMessage": "顯示全部",
+                                            "collapseMessage": "摺疊全部"
+                                        },
+                                        "stateRestore": {
+                                            "emptyError": "名稱不能空白。",
+                                            "creationModal": {
+                                                "button": "建立",
+                                                "columns": {
+                                                    "search": "欄位搜尋",
+                                                    "visible": "欄位顯示"
+                                                },
+                                                "name": "名稱：",
+                                                "order": "排序",
+                                                "paging": "分頁",
+                                                "scroller": "卷軸位置",
+                                                "search": "搜尋",
+                                                "searchBuilder": "複合查詢",
+                                                "select": "選擇",
+                                                "title": "建立新狀態",
+                                                "toggleLabel": "包含："
+                                            },
+                                            "duplicateError": "此狀態名稱已經存在。",
+                                            "emptyStates": "名稱不可空白。",
+                                            "removeConfirm": "確定要移除 %s 嗎？",
+                                            "removeError": "移除狀態失敗。",
+                                            "removeJoiner": "和",
+                                            "removeSubmit": "移除",
+                                            "removeTitle": "移除狀態",
+                                            "renameButton": "重新命名",
+                                            "renameLabel": "%s 的新名稱：",
+                                            "renameTitle": "重新命名狀態"
+                                        },
+                                        "select": {
+                                            "columns": {
+                                                "_": "選擇了 %d 欄資料",
+                                                "1": "選擇了 1 欄資料"
+                                            },
+                                            "rows": {
+                                                "1": "選擇了 1 筆資料",
+                                                "_": "選擇了 %d 筆資料"
+                                            },
+                                            "cells": {
+                                                "1": "選擇了 1 格資料",
+                                                "_": "選擇了 %d 格資料"
+                                            }
+                                        },
+                                        "zeroRecords": "沒有符合的資料",
+                                        "aria": {
+                                            "sortAscending": "：升冪排列",
+                                            "sortDescending": "：降冪排列"
+                                        },
+                                        "info": "顯示第 _START_ 至 _END_ 筆結果，共 _TOTAL_ 筆",
+                                        "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+                                        "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+                                        "infoThousands": ",",
+                                        "lengthMenu": "顯示 _MENU_ 筆結果",
+                                        "search": "找關鍵字：",
+                                        "searchPlaceholder": "請輸入關鍵字",
+                                        "thousands": ","
+                                    },
+                                    columnDefs: [
+                                        { type: 'chinese-string', targets: [0, 1] }
+                                    ]
+                                });
+                            });
+                        </script>
+                        <!--table end-->
+
+                    </div>
+
+                    <button class="accordion">Practical Conference on Information Management</button>
+                    <div class="panel">
+                        <p style="margin-top: 20px; color:rgb(81, 81, 81)">
+                            The articles submission has grown to more than 400 articles for
+                            this conference with an acceptance rate of 45%. There were nearly 800 participants from all
+                            industries in this event.</p>
+                        <!--table start-->
+                        <div class="">
+                            <table id="myTable1" class="display hover cell-border row-border stripe">
+                                <thead>
+                                    <tr>
+                                        <th>Period</th>
+                                        <th>Hold University</th>
+                                        <th>Year</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd views-row-first">
+                                        <td class="views-field views-field-title">1.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Central University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">1994</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">2.</td>
+                                        <td class="views-field views-field-field-dept-dir">Da-Yeh University</td>
+                                        <td class="views-field views-field-field-dept">1995</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">3.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chung Cheng
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">1997</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">4.</td>
+                                        <td class="views-field views-field-field-dept-dir">Fu Jen Catholic University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">1998</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">5.</td>
+                                        <td class="views-field views-field-field-dept-dir">Shih Hsin University</td>
+                                        <td class="views-field views-field-field-dept">1999</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">6.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chiao Tung
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">2000</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">7.</td>
+                                        <td class="views-field views-field-field-dept-dir">Jin Wen Institute of
+                                            Technology</td>
+                                        <td class="views-field views-field-field-dept">2001</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">8.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Kaohsiung First
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">2002</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">9.</td>
+                                        <td class="views-field views-field-field-dept-dir">Da-Yeh University</td>
+                                        <td class="views-field views-field-field-dept">2003</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">10.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Tai-Chung Institute
+                                            of Technology</td>
+                                        <td class="views-field views-field-field-dept">2004</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">11.</td>
+                                        <td class="views-field views-field-field-dept-dir">Shih Chien University</td>
+                                        <td class="views-field views-field-field-dept">2005</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">12.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Formosa University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">2006</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">13.</td>
+                                        <td class="views-field views-field-field-dept-dir">Shu-Te University</td>
+                                        <td class="views-field views-field-field-dept">2007</td>
+                                    </tr>
+                                    <tr class="even ">
+                                        <td class="views-field views-field-title">14.</td>
+                                        <td class="views-field views-field-field-dept-dir">Soochow University</td>
+                                        <td class="views-field views-field-field-dept">2008</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">15.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Kaohsiung University
+                                            of Applied Science</td>
+                                        <td class="views-field views-field-field-dept">2009</td>
+                                    </tr>
+                                    <tr class="even ">
+                                        <td class="views-field views-field-title">16.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Yunlin University of
+                                            Science and Technology</td>
+                                        <td class="views-field views-field-field-dept">2010</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">17.</td>
+                                        <td class="views-field views-field-field-dept-dir">Chia Nan University of
+                                            Pharmacp and Science</td>
+                                        <td class="views-field views-field-field-dept">2011</td>
+                                    </tr>
+                                    <tr class="even ">
+                                        <td class="views-field views-field-title">18.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Taipei University of
+                                            Technology</td>
+                                        <td class="views-field views-field-field-dept">2012</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">19.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Taichung University
+                                            of Science and Technology</td>
+                                        <td class="views-field views-field-field-dept">2013</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">20.</td>
+                                        <td class="views-field views-field-field-dept-dir">Lunghwa University of Science
+                                            and Technology</td>
+                                        <td class="views-field views-field-field-dept">2014</td>
+                                    </tr>
+                                    <tr class="odd views-row-last">
+                                        <td class="views-field views-field-title">21.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Chin-Yi University
+                                            of Technology</td>
+                                        <td class="views-field views-field-field-dept">2015</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--datatable-->
+                        <script>
+                            // 自訂中文筆畫排序函式
+                            //中文排序
+                            jQuery.fn.dataTableExt.oSort['chinese-string-asc'] = function (s1, s2) {
+                                return s1.localeCompare(s2);  //chinese-string的排序是根据中文Unicode码点来排序的，而不是根据中文字符的筆劃数。這表示會根據Unicode編碼來進行排序，而不是根據中文字符的筆劃數。
+                            };
+                            jQuery.fn.dataTableExt.oSort['chinese-string-desc'] = function (s1, s2) {
+                                return s2.localeCompare(s1);
+                            };
+                            $(document).ready(function () {
+                                $('#myTable1').DataTable({
+                                    "aLengthMenu": [5,10,20,50],
+                                    'iDisplayLength': 5, 
+                                    //中文化
+                                    "language": {
+                                        "processing": "處理中...",
+                                        "loadingRecords": "載入中...",
+                                        "paginate": {
+                                            "first": "第一頁",
+                                            "previous": "上一頁",
+                                            "next": "下一頁",
+                                            "last": "最後一頁"
+                                        },
+                                        "emptyTable": "目前沒有資料",
+                                        "datetime": {
+                                            "previous": "上一頁",
+                                            "next": "下一頁",
+                                            "hours": "時",
+                                            "minutes": "分",
+                                            "seconds": "秒",
+                                            "amPm": [
+                                                "上午",
+                                                "下午"
+                                            ],
+                                            "unknown": "未知",
+                                            "weekdays": [
+                                                "週日",
+                                                "週一",
+                                                "週二",
+                                                "週三",
+                                                "週四",
+                                                "週五",
+                                                "週六"
+                                            ],
+                                            "months": [
+                                                "一月",
+                                                "二月",
+                                                "三月",
+                                                "四月",
+                                                "五月",
+                                                "六月",
+                                                "七月",
+                                                "八月",
+                                                "九月",
+                                                "十月",
+                                                "十一月",
+                                                "十二月"
+                                            ]
+                                        },
+                                        "searchBuilder": {
+                                            "add": "新增條件",
+                                            "condition": "條件",
+                                            "deleteTitle": "刪除過濾條件",
+                                            "button": {
+                                                "_": "複合查詢 (%d)",
+                                                "0": "複合查詢"
+                                            },
+                                            "clearAll": "清空",
+                                            "conditions": {
+                                                "array": {
+                                                    "contains": "含有",
+                                                    "equals": "等於",
+                                                    "empty": "空值",
+                                                    "not": "不等於",
+                                                    "notEmpty": "非空值",
+                                                    "without": "不含"
+                                                },
+                                                "date": {
+                                                    "after": "大於",
+                                                    "before": "小於",
+                                                    "between": "在其中",
+                                                    "empty": "為空",
+                                                    "equals": "等於",
+                                                    "not": "不為",
+                                                    "notBetween": "不在其中",
+                                                    "notEmpty": "不為空"
+                                                },
+                                                "number": {
+                                                    "between": "在其中",
+                                                    "empty": "為空",
+                                                    "equals": "等於",
+                                                    "gt": "大於",
+                                                    "gte": "大於等於",
+                                                    "lt": "小於",
+                                                    "lte": "小於等於",
+                                                    "not": "不為",
+                                                    "notBetween": "不在其中",
+                                                    "notEmpty": "不為空"
+                                                },
+                                                "string": {
+                                                    "contains": "含有",
+                                                    "empty": "為空",
+                                                    "endsWith": "字尾為",
+                                                    "equals": "等於",
+                                                    "not": "不為",
+                                                    "notEmpty": "不為空",
+                                                    "startsWith": "字首為",
+                                                    "notContains": "不含",
+                                                    "notStartsWith": "開頭不是",
+                                                    "notEndsWith": "結尾不是"
+                                                }
+                                            },
+                                            "data": "欄位",
+                                            "leftTitle": "群組條件",
+                                            "logicAnd": "且",
+                                            "logicOr": "或",
+                                            "rightTitle": "取消群組",
+                                            "title": {
+                                                "_": "複合查詢 (%d)",
+                                                "0": "複合查詢"
+                                            },
+                                            "value": "內容"
+                                        },
+                                        "editor": {
+                                            "close": "關閉",
+                                            "create": {
+                                                "button": "新增",
+                                                "title": "新增資料",
+                                                "submit": "送出新增"
+                                            },
+                                            "remove": {
+                                                "button": "刪除",
+                                                "title": "刪除資料",
+                                                "submit": "送出刪除",
+                                                "confirm": {
+                                                    "_": "您確定要刪除您所選取的 %d 筆資料嗎？",
+                                                    "1": "您確定要刪除您所選取的 1 筆資料嗎？"
+                                                }
+                                            },
+                                            "error": {
+                                                "system": "系統發生錯誤(更多資訊)"
+                                            },
+                                            "edit": {
+                                                "button": "修改",
+                                                "title": "修改資料",
+                                                "submit": "送出修改"
+                                            },
+                                            "multi": {
+                                                "title": "多重值",
+                                                "info": "您所選擇的多筆資料中，此欄位包含了不同的值。若您想要將它們都改為同一個值，可以在此輸入，要不然它們會保留各自原本的值。",
+                                                "restore": "復原",
+                                                "noMulti": "此輸入欄需單獨輸入，不容許多筆資料一起修改"
+                                            }
+                                        },
+                                        "autoFill": {
+                                            "cancel": "取消"
+                                        },
+                                        "buttons": {
+                                            "copySuccess": {
+                                                "_": "複製了 %d 筆資料",
+                                                "1": "複製了 1 筆資料"
+                                            },
+                                            "copyTitle": "已經複製到剪貼簿",
+                                            "excel": "Excel",
+                                            "pdf": "PDF",
+                                            "print": "列印",
+                                            "copy": "複製",
+                                            "colvis": "欄位顯示",
+                                            "colvisRestore": "重置欄位顯示",
+                                            "csv": "CSV",
+                                            "pageLength": {
+                                                "-1": "顯示全部",
+                                                "_": "顯示 %d 筆"
+                                            },
+                                            "createState": "建立狀態",
+                                            "removeAllStates": "移除所有狀態",
+                                            "removeState": "移除",
+                                            "renameState": "重新命名",
+                                            "savedStates": "儲存狀態",
+                                            "stateRestore": "狀態 %d",
+                                            "updateState": "更新"
+                                        },
+                                        "searchPanes": {
+                                            "collapse": {
+                                                "_": "搜尋面版 (%d)",
+                                                "0": "搜尋面版"
+                                            },
+                                            "emptyPanes": "沒搜尋面版",
+                                            "loadMessage": "載入搜尋面版中...",
+                                            "clearMessage": "清空",
+                                            "count": "{total}",
+                                            "countFiltered": "{shown} ({total})",
+                                            "title": "過濾條件 - %d",
+                                            "showMessage": "顯示全部",
+                                            "collapseMessage": "摺疊全部"
+                                        },
+                                        "stateRestore": {
+                                            "emptyError": "名稱不能空白。",
+                                            "creationModal": {
+                                                "button": "建立",
+                                                "columns": {
+                                                    "search": "欄位搜尋",
+                                                    "visible": "欄位顯示"
+                                                },
+                                                "name": "名稱：",
+                                                "order": "排序",
+                                                "paging": "分頁",
+                                                "scroller": "卷軸位置",
+                                                "search": "搜尋",
+                                                "searchBuilder": "複合查詢",
+                                                "select": "選擇",
+                                                "title": "建立新狀態",
+                                                "toggleLabel": "包含："
+                                            },
+                                            "duplicateError": "此狀態名稱已經存在。",
+                                            "emptyStates": "名稱不可空白。",
+                                            "removeConfirm": "確定要移除 %s 嗎？",
+                                            "removeError": "移除狀態失敗。",
+                                            "removeJoiner": "和",
+                                            "removeSubmit": "移除",
+                                            "removeTitle": "移除狀態",
+                                            "renameButton": "重新命名",
+                                            "renameLabel": "%s 的新名稱：",
+                                            "renameTitle": "重新命名狀態"
+                                        },
+                                        "select": {
+                                            "columns": {
+                                                "_": "選擇了 %d 欄資料",
+                                                "1": "選擇了 1 欄資料"
+                                            },
+                                            "rows": {
+                                                "1": "選擇了 1 筆資料",
+                                                "_": "選擇了 %d 筆資料"
+                                            },
+                                            "cells": {
+                                                "1": "選擇了 1 格資料",
+                                                "_": "選擇了 %d 格資料"
+                                            }
+                                        },
+                                        "zeroRecords": "沒有符合的資料",
+                                        "aria": {
+                                            "sortAscending": "：升冪排列",
+                                            "sortDescending": "：降冪排列"
+                                        },
+                                        "info": "顯示第 _START_ 至 _END_ 筆結果，共 _TOTAL_ 筆",
+                                        "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+                                        "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+                                        "infoThousands": ",",
+                                        "lengthMenu": "顯示 _MENU_ 筆結果",
+                                        "search": "找關鍵字：",
+                                        "searchPlaceholder": "請輸入關鍵字",
+                                        "thousands": ","
+                                    },
+                                    columnDefs: [
+                                        { type: 'chinese-string', targets: [0, 1] }
+                                    ]
+                                });
+                            });
+                        </script>
+                        <!--table end-->
+
+                    </div>
+
+                    <button class="accordion">National College Contest of Information Management Project Design and IT
+                        Services Innovation</button>
+                    <div class="panel">
+                        <p style="margin-top: 20px; color:rgb(81, 81, 81)">
+                            Held for 10 years. In 2006, participating teams from all colleges have more than 100 teams.
+                        </p>
+                        <!--table start-->
+                        <div class="">
+                            <table id="myTable2" class="display hover cell-border row-border stripe">
+                                <thead>
+                                    <tr>
+                                        <th>Period</th>
+                                        <th>Hold University</th>
+                                        <th>Year</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd views-row-first">
+                                        <td class="views-field views-field-title">1.</td>
+                                        <td class="views-field views-field-field-dept-dir">Fu Jen Catholic University
+                                        </td>
+                                        <td class="views-field views-field-field-dept">1996</td>
+
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">2.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Kaohsiung First
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">1997</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">3.</td>
+                                        <td class="views-field views-field-field-dept-dir">Chang Jung Christian
+                                            University</td>
+                                        <td class="views-field views-field-field-dept">1998</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">4.</td>
+                                        <td class="views-field views-field-field-dept-dir">Southern Taiwan University of
+                                            Technology</td>
+                                        <td class="views-field views-field-field-dept">1999</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">5.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Yunlin University of
+                                            Science and Technology</td>
+                                        <td class="views-field views-field-field-dept">2000</td>
+
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">6.</td>
+                                        <td class="views-field views-field-field-dept-dir">Vanung University</td>
+                                        <td class="views-field views-field-field-dept">2001</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">7.</td>
+                                        <td class="views-field views-field-field-dept-dir">Ta Hwa Institute of
+                                            Technology</td>
+                                        <td class="views-field views-field-field-dept">2002</td>
+
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="views-field views-field-title">8.</td>
+                                        <td class="views-field views-field-field-dept-dir">St. John's University</td>
+                                        <td class="views-field views-field-field-dept">2003</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="views-field views-field-title">9.</td>
+                                        <td class="views-field views-field-field-dept-dir">Kao Yuan University</td>
+                                        <td class="views-field views-field-field-dept">2004</td>
+
+                                    </tr>
+                                    <tr class="even views-row-last">
+                                        <td class="views-field views-field-title">10.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Taiwan University
+                                            (CSIM)</td>
+                                        <td class="views-field views-field-field-dept">2005</td>
+                                    </tr>
+                                    <tr class="odd views-row-last">
+                                        <td class="views-field views-field-title">11.</td>
+                                        <td class="views-field views-field-field-dept-dir">National Taiwan University
+                                            (CSIM)</td>
+                                        <td class="views-field views-field-field-dept">2006~</td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--datatable-->
+                        <script>
+                            // 自訂中文筆畫排序函式
+                            //中文排序
+                            jQuery.fn.dataTableExt.oSort['chinese-string-asc'] = function (s1, s2) {
+                                return s1.localeCompare(s2);  //chinese-string的排序是根据中文Unicode码点来排序的，而不是根据中文字符的筆劃数。這表示會根據Unicode編碼來進行排序，而不是根據中文字符的筆劃數。
+                            };
+                            jQuery.fn.dataTableExt.oSort['chinese-string-desc'] = function (s1, s2) {
+                                return s2.localeCompare(s1);
+                            };
+                            $(document).ready(function () {
+                                $('#myTable2').DataTable({
+                                    "aLengthMenu": [5,10,20,50],
+                                    'iDisplayLength': 5, 
+                                    //中文化
+                                    "language": {
+                                        "processing": "處理中...",
+                                        "loadingRecords": "載入中...",
+                                        "paginate": {
+                                            "first": "第一頁",
+                                            "previous": "上一頁",
+                                            "next": "下一頁",
+                                            "last": "最後一頁"
+                                        },
+                                        "emptyTable": "目前沒有資料",
+                                        "datetime": {
+                                            "previous": "上一頁",
+                                            "next": "下一頁",
+                                            "hours": "時",
+                                            "minutes": "分",
+                                            "seconds": "秒",
+                                            "amPm": [
+                                                "上午",
+                                                "下午"
+                                            ],
+                                            "unknown": "未知",
+                                            "weekdays": [
+                                                "週日",
+                                                "週一",
+                                                "週二",
+                                                "週三",
+                                                "週四",
+                                                "週五",
+                                                "週六"
+                                            ],
+                                            "months": [
+                                                "一月",
+                                                "二月",
+                                                "三月",
+                                                "四月",
+                                                "五月",
+                                                "六月",
+                                                "七月",
+                                                "八月",
+                                                "九月",
+                                                "十月",
+                                                "十一月",
+                                                "十二月"
+                                            ]
+                                        },
+                                        "searchBuilder": {
+                                            "add": "新增條件",
+                                            "condition": "條件",
+                                            "deleteTitle": "刪除過濾條件",
+                                            "button": {
+                                                "_": "複合查詢 (%d)",
+                                                "0": "複合查詢"
+                                            },
+                                            "clearAll": "清空",
+                                            "conditions": {
+                                                "array": {
+                                                    "contains": "含有",
+                                                    "equals": "等於",
+                                                    "empty": "空值",
+                                                    "not": "不等於",
+                                                    "notEmpty": "非空值",
+                                                    "without": "不含"
+                                                },
+                                                "date": {
+                                                    "after": "大於",
+                                                    "before": "小於",
+                                                    "between": "在其中",
+                                                    "empty": "為空",
+                                                    "equals": "等於",
+                                                    "not": "不為",
+                                                    "notBetween": "不在其中",
+                                                    "notEmpty": "不為空"
+                                                },
+                                                "number": {
+                                                    "between": "在其中",
+                                                    "empty": "為空",
+                                                    "equals": "等於",
+                                                    "gt": "大於",
+                                                    "gte": "大於等於",
+                                                    "lt": "小於",
+                                                    "lte": "小於等於",
+                                                    "not": "不為",
+                                                    "notBetween": "不在其中",
+                                                    "notEmpty": "不為空"
+                                                },
+                                                "string": {
+                                                    "contains": "含有",
+                                                    "empty": "為空",
+                                                    "endsWith": "字尾為",
+                                                    "equals": "等於",
+                                                    "not": "不為",
+                                                    "notEmpty": "不為空",
+                                                    "startsWith": "字首為",
+                                                    "notContains": "不含",
+                                                    "notStartsWith": "開頭不是",
+                                                    "notEndsWith": "結尾不是"
+                                                }
+                                            },
+                                            "data": "欄位",
+                                            "leftTitle": "群組條件",
+                                            "logicAnd": "且",
+                                            "logicOr": "或",
+                                            "rightTitle": "取消群組",
+                                            "title": {
+                                                "_": "複合查詢 (%d)",
+                                                "0": "複合查詢"
+                                            },
+                                            "value": "內容"
+                                        },
+                                        "editor": {
+                                            "close": "關閉",
+                                            "create": {
+                                                "button": "新增",
+                                                "title": "新增資料",
+                                                "submit": "送出新增"
+                                            },
+                                            "remove": {
+                                                "button": "刪除",
+                                                "title": "刪除資料",
+                                                "submit": "送出刪除",
+                                                "confirm": {
+                                                    "_": "您確定要刪除您所選取的 %d 筆資料嗎？",
+                                                    "1": "您確定要刪除您所選取的 1 筆資料嗎？"
+                                                }
+                                            },
+                                            "error": {
+                                                "system": "系統發生錯誤(更多資訊)"
+                                            },
+                                            "edit": {
+                                                "button": "修改",
+                                                "title": "修改資料",
+                                                "submit": "送出修改"
+                                            },
+                                            "multi": {
+                                                "title": "多重值",
+                                                "info": "您所選擇的多筆資料中，此欄位包含了不同的值。若您想要將它們都改為同一個值，可以在此輸入，要不然它們會保留各自原本的值。",
+                                                "restore": "復原",
+                                                "noMulti": "此輸入欄需單獨輸入，不容許多筆資料一起修改"
+                                            }
+                                        },
+                                        "autoFill": {
+                                            "cancel": "取消"
+                                        },
+                                        "buttons": {
+                                            "copySuccess": {
+                                                "_": "複製了 %d 筆資料",
+                                                "1": "複製了 1 筆資料"
+                                            },
+                                            "copyTitle": "已經複製到剪貼簿",
+                                            "excel": "Excel",
+                                            "pdf": "PDF",
+                                            "print": "列印",
+                                            "copy": "複製",
+                                            "colvis": "欄位顯示",
+                                            "colvisRestore": "重置欄位顯示",
+                                            "csv": "CSV",
+                                            "pageLength": {
+                                                "-1": "顯示全部",
+                                                "_": "顯示 %d 筆"
+                                            },
+                                            "createState": "建立狀態",
+                                            "removeAllStates": "移除所有狀態",
+                                            "removeState": "移除",
+                                            "renameState": "重新命名",
+                                            "savedStates": "儲存狀態",
+                                            "stateRestore": "狀態 %d",
+                                            "updateState": "更新"
+                                        },
+                                        "searchPanes": {
+                                            "collapse": {
+                                                "_": "搜尋面版 (%d)",
+                                                "0": "搜尋面版"
+                                            },
+                                            "emptyPanes": "沒搜尋面版",
+                                            "loadMessage": "載入搜尋面版中...",
+                                            "clearMessage": "清空",
+                                            "count": "{total}",
+                                            "countFiltered": "{shown} ({total})",
+                                            "title": "過濾條件 - %d",
+                                            "showMessage": "顯示全部",
+                                            "collapseMessage": "摺疊全部"
+                                        },
+                                        "stateRestore": {
+                                            "emptyError": "名稱不能空白。",
+                                            "creationModal": {
+                                                "button": "建立",
+                                                "columns": {
+                                                    "search": "欄位搜尋",
+                                                    "visible": "欄位顯示"
+                                                },
+                                                "name": "名稱：",
+                                                "order": "排序",
+                                                "paging": "分頁",
+                                                "scroller": "卷軸位置",
+                                                "search": "搜尋",
+                                                "searchBuilder": "複合查詢",
+                                                "select": "選擇",
+                                                "title": "建立新狀態",
+                                                "toggleLabel": "包含："
+                                            },
+                                            "duplicateError": "此狀態名稱已經存在。",
+                                            "emptyStates": "名稱不可空白。",
+                                            "removeConfirm": "確定要移除 %s 嗎？",
+                                            "removeError": "移除狀態失敗。",
+                                            "removeJoiner": "和",
+                                            "removeSubmit": "移除",
+                                            "removeTitle": "移除狀態",
+                                            "renameButton": "重新命名",
+                                            "renameLabel": "%s 的新名稱：",
+                                            "renameTitle": "重新命名狀態"
+                                        },
+                                        "select": {
+                                            "columns": {
+                                                "_": "選擇了 %d 欄資料",
+                                                "1": "選擇了 1 欄資料"
+                                            },
+                                            "rows": {
+                                                "1": "選擇了 1 筆資料",
+                                                "_": "選擇了 %d 筆資料"
+                                            },
+                                            "cells": {
+                                                "1": "選擇了 1 格資料",
+                                                "_": "選擇了 %d 格資料"
+                                            }
+                                        },
+                                        "zeroRecords": "沒有符合的資料",
+                                        "aria": {
+                                            "sortAscending": "：升冪排列",
+                                            "sortDescending": "：降冪排列"
+                                        },
+                                        "info": "顯示第 _START_ 至 _END_ 筆結果，共 _TOTAL_ 筆",
+                                        "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+                                        "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+                                        "infoThousands": ",",
+                                        "lengthMenu": "顯示 _MENU_ 筆結果",
+                                        "search": "找關鍵字：",
+                                        "searchPlaceholder": "請輸入關鍵字",
+                                        "thousands": ","
+                                    },
+                                    columnDefs: [
+                                        { type: 'chinese-string', targets: [0, 1] }
+                                    ]
+                                });
+                            });
+                        </script>
+                        <!--table end-->
+                    </div>
+                    <script>
+                        var acc = document.getElementsByClassName("accordion");
+                        var i;
+
+                        for (i = 0; i < acc.length; i++) {
+                            acc[i].addEventListener("click", function () {
+                                this.classList.toggle("active2");
+                                var panel = this.nextElementSibling;
+                                if (panel.style.maxHeight) {
+                                    panel.style.maxHeight = null;
+                                } else {
+                                    panel.style.maxHeight = panel.scrollHeight + "px";
+                                }
+                            });
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">
+                        <i class="fa fa-building text-primary me-3"></i>中華民國資訊管理學會
+                    </h4>
+                    <p>
+                        成立於民國 79年，係集合群國大專院校資訊管理學門之學者專家與部分資訊業界之精英組合而成。
+                    </p>
+
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4"><i class="fa fa-map-marker"></i> 會址</h4>
+                    <p>
+                        <a
+                            href="https://www.google.com.tw/maps/place/251%E6%96%B0%E5%8C%97%E5%B8%82%E6%B7%A1%E6%B0%B4%E5%8D%80%E8%8B%B1%E5%B0%88%E8%B7%AF151%E8%99%9F/@25.1732175,121.446974,17z/data=!3m1!4b1!4m6!3m5!1s0x3442aff88cdfea69:0x40adc63d62b9e736!8m2!3d25.1732127!4d121.4495489!16s%2Fg%2F11csm1_t5w?hl=zh-TW&entry=ttu">251301
+                            新北市淡水區英專路151號（資管系辦公室）</a>
+                    </p>
+                    <p>
+                        No.151, Yingzhuan Rd., Tamsui Dist., New Taipei City 251301, Taiwan (R.O.C.)
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4"><i class="fa fa-envelope"></i> Email</h4>
+                    <p>
+                        <a href="mailto:csim.service@gmail.com">csim.service@gmail.com</a>
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4"><i class="fa fa-phone" aria-hidden="true"></i> TEL</h4>
+                    <p>專員：楊先生、林小姐</p>
+                    <p>
+                        02-26215656 分機 2228
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <a href="/web/index.html">中華民國資訊管理學會</a>版權所有@2013 CSIM All Rights Reserved.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>CSIM - 各校資管系所</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
+
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--datatable-->
+    <link rel="stylesheet" href="css/aboutcsim1.css">
+    <link rel="stylesheet" href="css/aboutcsim2.css" />
+    <script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/applyboot.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/apply_style.css" rel="stylesheet" />
+    <style>
+        /* 背景遮罩 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* 彈出窗口 */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        /* 關閉按鈕 */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <h4 class="m-0">
+                <img src="https://www.csim.org.tw/sites/default/files/CSIM.gif">中華民國資訊管理學會
+            </h4>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-3 py-lg-0">
+                <a href="index.html" class="nav-item nav-link active">首頁</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">關於協會</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="aboutcsim.html" class="dropdown-item">學會簡介</a>
+                        <a href="apply.html" class="dropdown-item">申請入會</a>
+                        <a href="download.html" class="dropdown-item">各式資料下載</a>
+                    </div>
+                </div>
+                <a href="department.html" class="nav-item nav-link">各校資管系所</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">研究及出版品</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="https://eclab.nkust.edu.tw/submitjim/" class="dropdown-item">資訊管理學報</a>
+                        <a href="search.html" class="dropdown-item">研究會論文集</a>
+                    </div>
+                </div>
+                <a href="team.html" class="nav-item nav-link">活動花絮</a>
+                <a href="contact.html" class="nav-item nav-link">聯絡我們</a>
+                <a href="english.html" class="nav-item nav-link">English</a>
+                <a href="" class="nav-item nav-link"></a>
+                <a href="" class="nav-item nav-link"></a>
+                <button href="" class="nav-item nav-link" id="show"
+                    style="background-color:#0a0a2300;border:none;width:30px;"><i class="fa fa-user-circle-o"
+                        style="font-size:28px;" aria-hidden="true"></i></button>
+                <dialog id="infoModal" style="width: 30%;border:1px;">
+                    <button id="close" style="margin-left: 400px;background-color:#ff961f;border:#fff;">X</button>
+                    <div class="col-lg-8 col-md-6">
+                        <div class="border-start border-5 border-primary ps-4 mb-5">
+                            <h4 class="display-6 mb-0">
+                                登入
+
+                            </h4>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-6">
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control bg-light border-0"
+                                            placeholder="請帳號密碼..." />
+                                        <label>帳號</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control bg-light border-0"
+                                            placeholder="請輸入密碼..." />
+                                        <label>密碼</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <button class="btn btn-primary w-100 py-3" type=""
+                                        style="background-color: rgb(188, 142, 81);border:none;">
+                                        還沒有帳號!
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-primary w-100 py-3" type="">
+                                        登入
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </dialog>
+                <script>
+                    let btn = document.querySelector("#show");
+                    let infoModal = document.querySelector("#infoModal");
+                    btn.addEventListener("click", function () {
+                        infoModal.showModal();
+                    })
+                    let close = document.querySelector("#close");
+                    close.addEventListener("click", function () {
+                        infoModal.close();
+                    })
+                </script>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center py-5">
+            <h1 class="display-4  animated slideInDown mb-4" style="color:  #007ca6;">申請入會</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+   
+    <!--活動 Start-->
+
+    <div class="container-xxl">
+        <div class="container">
+
+            <div class=" wow fadeInUp" data-wow-delay="0.5s" style="background-color: #ecfbff;">
+                <div class="h-100">
+                    <div class="border-star border-5 border-primary ps-4 mb-5">
+                        <p class="py-2">
+                        <h5><i class="fa fa-plus-circle" aria-hidden="true" style="color:#00637b"></i> 申請入會及會費說明：</h5>
+                        <ol>
+                            <li>本學會秘書處即日起將在學會網站公告會員清查與補繳會費事宜，並個別通知未繳費補繳會費或補登錄會員資料(失聯會員)等作業，若逾期未補繳或登錄會員資料時，將彙集名單送理監事聯席會議審理停權事宜。
+                            </li>
+                            <li>停權後，會員可隨時繳費或補錄資料，以回復會員各項權利。(依97.12.13中華民國資訊管理學會第十屆第八次理監事聯席會議決議辦理)</li>
+                            <li>有關會員年繳會費事宜，新入會會員自繳費日期起，其會員權益算至下一年度年底(12/31)止，第三年起(含舊會員)的年繳會員繳費期間為每年年初至當年五月底止，每年年底清查會員資格一次。
+                            </li>
+                            <li>會員資料若須更新請email辦理。</li>
+                            <li>會費繳交請至郵局劃撥，劃撥帳號：19411984，戶名：社團法人中華民國資訊管理學會</li>
+                            <li>相關章程規定：節錄本學會章程中關於會員之基本權利與義務相關規定，讓可敬的會員先進知悉。依中華民國資訊管理學會章程之第二章會員之第八條、第九條及第十二條規定，
+                                第八條 會員有遵守本會章程決議及繳納會費之義務。
+                                第九條
+                                會員(會員代表)有違反法令章程連續兩年未繳會費或不遵守會員(會員代表)大會決議者得經理事會決議與以警告或停權處分，其危害團體情節重大者得經會員(會員代表)大會決議予以除名。
+                                第十二條 正會員及團體會員所派代表有表決權 選舉權 被選舉權與罷免權。
+                                其他會員僅有列席會員大會之權利；每一正會員(會員代表)為一權。</li>
+                            <li>會費規定及入會程序：</li>
+                        </ol>
+                        <div class="row g-4">
+                            <div class="col-sm-6 d-flex wow fadeIn" data-wow-delay="0.1s">
+                                <i class="fa fa-check fa-2x text-primary flex-shrink-0 me-3"
+                                    style="margin-top: 1rem;"></i>
+
+                                
+                                    <ol type="i">個人會員
+                                        <li>正會員需符合下列條件：
+                                            <br>
+                                            &nbsp;&nbsp;(1). 國內外大專講師（含）以上、或在研究發展機構擔任相當職務者
+                                            <br>
+                                            &nbsp;&nbsp;(2). 國內外資訊管理或相關研究所畢業，或研究所休習三年以上，並有論文公開發表者
+                                            <br>
+                                            &nbsp;&nbsp;(3). 政府或民營企業擔任資訊管理或其他主管三年以上者</li>
+                                        <li>會費相關規定：
+                                            <br>
+                                            &nbsp;&nbsp;(1). 入會費：學生會員NT$ 100 元、一般會員及正會員NT$ 500 元
+                                            <br>
+                                            &nbsp;&nbsp;(2). 年 費：學生會員NT$ 200 元/年、一般會員及正會員NT$ 800
+                                            元/年、若欲成為永久會員請一次繳交NT$ 8,000 元</li>
+                                        <li>入會程序
+                                            <br>
+                                            &nbsp;&nbsp;(1). 填寫申請表，電子檔寄交本會秘書處
+                                            <br>
+                                            &nbsp;&nbsp;(2). 送理事會通過後，通知繳費，完成入會手續</li>
+                                     </ol>
+                                
+                            </div>
+                            <div class="col-sm-6 d-flex wow fadeIn" data-wow-delay="0.3s">
+                                <i class="fa fa-check fa-2x text-primary flex-shrink-0 me-3"
+                                    style="margin-top: 1rem;"></i>
+                                    
+                                    <ol type="i">團體會員
+                                        <li>團體會員需符合之條件：
+                                            <br>
+                                            &nbsp;&nbsp;(1).
+                                            凡國內外工商業界或學術機構經正會員一人以上之推薦，並經本會理事會通過後，得為團體會員，並推派代表一人，享有正會員權利。</li>
+                                        <li>會費相關規定：
+                                            <br>
+                                            &nbsp;&nbsp;(1). 入會費：NT$ 500 元
+                                            <br>
+                                            &nbsp;&nbsp;(2). 年 費：NT$ 5,000 元/年，若欲成為永久團體會員請一次繳交NT$
+                                            50,000 元</li>
+                                        <li>入會程序
+                                            <br>
+                                            &nbsp;&nbsp;(1). 填寫申請表，電子檔寄交本會秘書處
+                                            <br>
+                                            &nbsp;&nbsp;(2). 送理事會通過後，通知繳費，完成入會手續
+                                            <br>
+                                            秘書室 敬啟</li>
+                            </div>
+
+                        </div>
+                        <hr>
+                        聯絡電話：02-26215656分機2228
+                        <br>
+                        電子信箱：<a href="mailto:csim.service@gmail.com">csim.service@gmail.com</a>
+                        <br>
+                        檔案:
+                        <br><i class="fa fa-file" aria-hidden="true"></i><a href="applydoc/apply1.doc">入會申請表(個人會員申請)-102年度</a>
+                        <br><i class="fa fa-file" aria-hidden="true"></i><a href="applydoc/apply2.doc">入會申請表(團體會員申請)-102年度</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">
+                        <i class="fa fa-building text-primary me-3"></i>中華民國資訊管理學會
+                    </h4>
+                    <p>
+                        成立於民國 79年，係集合群國大專院校資訊管理學門之學者專家與部分資訊業界之精英組合而成。
+                    </p>
+
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4"><i class="fa fa-map-marker"></i> 會址</h4>
+                    <p>
+                        <a
+                            href="https://www.google.com.tw/maps/place/251%E6%96%B0%E5%8C%97%E5%B8%82%E6%B7%A1%E6%B0%B4%E5%8D%80%E8%8B%B1%E5%B0%88%E8%B7%AF151%E8%99%9F/@25.1732175,121.446974,17z/data=!3m1!4b1!4m6!3m5!1s0x3442aff88cdfea69:0x40adc63d62b9e736!8m2!3d25.1732127!4d121.4495489!16s%2Fg%2F11csm1_t5w?hl=zh-TW&entry=ttu">251301
+                            新北市淡水區英專路151號（資管系辦公室）</a>
+                    </p>
+                    <p>
+                        No.151, Yingzhuan Rd., Tamsui Dist., New Taipei City 251301, Taiwan (R.O.C.)
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4"><i class="fa fa-envelope"></i> Email</h4>
+                    <p>
+                        <a href="mailto:csim.service@gmail.com">csim.service@gmail.com</a>
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4"><i class="fa fa-phone" aria-hidden="true"></i> TEL</h4>
+                    <p>專員：楊先生、林小姐</p>
+                    <p>
+                        02-26215656 分機 2228
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <a href="/web/index.html">中華民國資訊管理學會</a>版權所有@2013 CSIM All Rights Reserved.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

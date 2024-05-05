@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <meta charset="utf-8" />
+      <title>Apex - Home Repair Website Template</title>
+      <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+      <meta content="" name="keywords" />
+      <meta content="" name="description" />
+
+      <!-- Favicon -->
+      <link href="img/favicon.ico" rel="icon" />
+
+      <!-- Google Web Fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600;700&display=swap"
+            rel="stylesheet" />
+
+      <!-- Icon Font Stylesheet -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+      <!-- Libraries Stylesheet -->
+      <link href="lib/animate/animate.min.css" rel="stylesheet" />
+      <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+      <!-- Customized Bootstrap Stylesheet -->
+      <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+      <!-- Template Stylesheet -->
+      <link href="css/style.css" rel="stylesheet" />
+
+      <link href="css/mermaid.min.css" rel="stylesheet" />
+      <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+            integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+      <!-- Add Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add FontAwesome CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0-beta3/css/all.min.css" rel="stylesheet">
+      <style>
+            #sort-table {
+                  width: 80%;
+                  margin: 0 auto;
+                  /* �����菊��嚙踝蕭瞏剖�������喉蕭嚙賡��嚙� */
+            }
+
+            /* ��萄�賂蕭���嚙踝蕭嚙踝蕭嚙� */
+            th {
+                  background-color: #f2f2f2;
+            }
+
+            /* 嚙踝蕭��潘蕭閰剁蕭嚙踝蕭嚙踝蕭嚙踝蕭��恬蕭嚙踝蕭嚙踝蕭 */
+            tbody tr:nth-child(odd) {
+                  background-color: #f9f9f9;
+            }
+
+            /* 嚙踝蕭嚙踝蕭嚙質岳嚙踝蕭嚙踝蕭嚙踝蕭嚙質�恬蕭嚙踝蕭嚙踝蕭 */
+            tbody tr:nth-child(even) {
+                  background-color: #f1f1f1;
+            }
+
+            /* ���嚙賣��嚙踝蕭嚙質岳嚙踝蕭��選蕭嚙踝蕭嚙� */
+            tbody tr:hover {
+                  background-color: #e5e5e5;
+            }
+      </style>
+</head>
+
+<body>
+
+      <table id="sort-table" data-toggle="table">
+            <thead>
+                  <tr>
+                      <th class="views-field views-field-title" scope="col">
+                          ��株悻嚙賤�迎蕭嚙質��嚙� <button><i class="fa fa-caret-up" onclick="sortTable('name', 'asc')"></i></button><button><i class="fa fa-caret-down" onclick="sortTable('name', 'desc')"></i></button>
+                      </th>
+                      
+                      <th class="views-field views-field-field-dept-dir" scope="col">
+                          ���憸梯�����嚙� <button><i class="fa fa-caret-up" onclick="sortTable('name', 'asc')"></i></button><button><i class="fa fa-caret-down" onclick="sortTable('name', 'desc')"></i></button>
+                      </th>
+                      <th class="views-field views-field-field-dept" scope="col">
+                          ���擗�嚙踝蕭嚙踝蕭嚙質��嚙� <<button><i class="fa fa-caret-up" onclick="sortTable('name', 'asc')"></i></button><button><i class="fa fa-caret-down" onclick="sortTable('name', 'desc')"></i></button>
+                      </th>
+                      <th class="views-field views-field-field-url" scope="col">
+                          ���擗�嚙踝蕭��祈��嚙踝蕭 <button><i class="fa fa-caret-up" onclick="sortTable('name', 'asc')"></i></button><button><i class="fa fa-caret-down" onclick="sortTable('name', 'desc')"></i></button>
+                      </th>
+                      <th class="views-field views-field-field-phone" scope="col">
+                          嚙踝蕭擗�摨� <button><i class="fa fa-caret-up" onclick="sortTable('name', 'asc')"></i></button><button><i class="fa fa-caret-down" onclick="sortTable('name', 'desc')"></i></button>
+                      </th>
+                      <th class="views-field views-field-view-node" scope="col">
+                          ��芬�抬蕭嚙� <button><i class="fa fa-caret-up" onclick="sortTable('name', 'asc')"></i></button><button><i class="fa fa-caret-down" onclick="sortTable('name', 'desc')"></i></button>
+                      </th>
+                  </tr>
+                  </thead>
+            <tbody>
+                  <tr class="odd views-row-first">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/247">���憳����嚙踝蕭��券◢������嚙踝蕭���嚙踝蕭嚙踝蕭</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              ���嚙賣�佗蕭嚙踝蕭嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://www.szmc.edu.tw/Information/" class="ext"
+                                    target="_blank">http://www.szmc.edu.tw/... <span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (07)6979392 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/247">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="even">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/245">��函��蟡���剜�寥��(嚙踝蕭鈭����嚙踝蕭閮橘蕭嚙質��嚙踝蕭嚙踝蕭��株�����)</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭��喉蕭嚙踝蕭嚙踝蕭 </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://da.ukn.edu.tw/bin/home.php" class="ext"
+                                    target="_blank">http://da.ukn.edu.tw/bin/home.... <span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (06)2552500#33300 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/245">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="odd">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/244">嚙踝蕭���嚙踝蕭���嚙踝蕭嚙踝蕭��剜�寥��(���嚙賡�殷蕭嚙踝蕭嚙踝蕭嚙賡��嚙踝蕭嚙踝蕭嚙踝蕭嚙踝蕭������嚙踝蕭���嚙�)</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭���嚙踝蕭嚙踝蕭嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://www.iecm.twu.edu.tw/showindex.php" class="ext"
+                                    target="_blank">http://www.iecm.twu.edu... <span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (05)5370988#4351 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/244">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="even">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/243">���摮萄�貉��嚙踝蕭嚙踝蕭��剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭��伐蕭���嚙踝蕭 </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://www.mis.stu.edu.tw/" class="ext"
+                                    target="_blank">http://www.mis.stu.edu.tw/<span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (07)6158000#3002 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/243">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="odd">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/242">嚙踝蕭嚙踝蕭嚙賣��嚙踝蕭嚙踝蕭嚙賣�剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              ��選蕭嚙踝蕭嚙賣��嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://www.feu.edu.tw/edu/mis/101new/index.asp" class="ext"
+                                    target="_blank">http://www.feu.... <span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (06)5979566 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/242">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="even">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/241">���嚙踝蕭嚙賣��嚙踝蕭嚙踝蕭嚙賣�剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭嚙賣��嚙賡��嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/24" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭���嚙踝蕭嚙踝蕭嚙踝蕭嚙質�����嚙踝蕭��株�����</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://eitm.fy.edu.tw/?Lang=zh-tw" class="ext"
+                                    target="_blank">http://eitm.fy.edu.tw/?Lang=zh... <span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (07)7811151#6480 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/241">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="odd">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/240">嚙踝蕭嚙踝蕭嚙踝蕭嚙踝蕭鈭佗蕭嚙質��嚙踝蕭嚙踝蕭��剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭���嚙踝蕭嚙踝蕭嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="https://mis.cnu.edu.tw/" class="ext" target="_blank">https://mis.cnu.edu.tw/<span
+                                          class="ext"><span class="element-invisible"> (link is
+                                                external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (06)2664911#5300 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/240">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="even">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/239">���嚙賣��璇�嚙踝蕭嚙踝蕭嚙賣�剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭���嚙踝蕭嚙踝蕭嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="https://web.ksu.edu.tw/DTMAIMD/bulletin/" class="ext"
+                                    target="_blank">https://web.ksu.edu.tw/... <span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (06)2727175 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/239">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="odd">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/238">���嚙踝蕭嚙踝蕭���嚙踝蕭嚙踝蕭��剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭��怎��嚙踝蕭嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://www.mis.kyu.edu.tw" class="ext"
+                                    target="_blank">http://www.mis.kyu.edu.tw<span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (07)6077090 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/238">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="even">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/237">��ｇ蕭嚙踝蕭嚙質��嚙踝蕭嚙踝蕭��剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭嚙賜��嚙賡�踝蕭 </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://dim.meiho.edu.tw/" class="ext"
+                                    target="_blank">http://dim.meiho.edu.tw/<span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (08)7799821#8661 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/237">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="odd">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/236">嚙踝蕭嚙踝蕭嚙賢��嚙踝蕭嚙踝蕭嚙賣�剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              �����堆蕭嚙賣��嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="https://mis.stust.edu.tw/" class="ext"
+                                    target="_blank">https://mis.stust.edu.tw/<span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (06)2533131#4301 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/236">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="even">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/235">嚙踝蕭嚙質�∴蕭���嚙賜��嚙質��嚙踝蕭嚙踝蕭��剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭嚙賜��鞊ｇ蕭嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://www.mis.npu.edu.tw/" class="ext"
+                                    target="_blank">http://www.mis.npu.edu.tw/<span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (06)9264115#3402 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/235">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="odd">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/233">嚙踝蕭嚙質�∴蕭���嚙踝蕭嚙踝蕭���嚙踝蕭嚙踝蕭��剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭嚙踝蕭嚙踝蕭嚙踝蕭嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="https://mis.nkust.edu.tw/app/index.php" class="ext"
+                                    target="_blank">https://mis.nkust.edu.tw/... <span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (07)6011000#34102 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/233">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="even">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/231">嚙踝蕭嚙質�∴蕭���嚙踝蕭嚙賢��銋���殷蕭</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭皝改蕭鞊ｇ蕭嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://www.mis.nptu.edu.tw/bin/home.php?Lang=zh-tw" class="ext"
+                                    target="_blank">http://www.... <span class="ext"><span class="element-invisible">
+                                                (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (08)7663800 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/231">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="odd">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/230">嚙踝蕭嚙質�∴蕭嚙踝蕭嚙賣�����嚙踝蕭嚙踝蕭嚙賣�剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭���嚙踝蕭嚙踝蕭嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://nfuim.nfu.edu.tw/zh/" class="ext"
+                                    target="_blank">http://nfuim.nfu.edu.tw/zh/<span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (05)6315000 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/230">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="even">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/229">嚙踝蕭嚙質�∴蕭嚙踝蕭��恬蕭嚙質��嚙踝蕭嚙踝蕭��剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭嚙踝蕭嚙賭遛嚙踝蕭 </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="https://www.mis.yuntech.edu.tw/" class="ext"
+                                    target="_blank">https://www.mis.yuntech.edu.tw... <span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (05)5342601#5302~5304 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/229">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="odd">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/228">���蝞賂蕭璇�嚙踝蕭嚙踝蕭嚙賣�剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              ��綽蕭嚙踝蕭嚙踝蕭嚙踝蕭 </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="http://www.teach.ltu.edu.tw/Home/Index?gpid=30" class="ext"
+                                    target="_blank">http://www.teach.... <span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (04)23892088#3732 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/228">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="even">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/227">嚙踝蕭嚙踝蕭嚙踝蕭���嚙踝蕭嚙踝蕭��剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              ���嚙賜��獢�摮� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="https://imtech.ocu.edu.tw/" class="ext"
+                                    target="_blank">https://imtech.ocu.edu.tw/<span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (04)27016855 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/227">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="odd">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/226">嚙踝蕭嚙踝蕭嚙質��嚙踝蕭嚙踝蕭嚙賣�剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭嚙踝蕭嚙踝蕭���嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="https://webim.cyut.edu.tw/" class="ext"
+                                    target="_blank">https://webim.cyut.edu.tw/<span class="ext"><span
+                                                class="element-invisible"> (link is external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (04)23323000#7124 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/226">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+                  <tr class="even views-row-last">
+                        <td class="views-field views-field-title">
+                              <a href="/mis/225">��賣��������嚙踝蕭嚙踝蕭��剜�寥��</a>
+                        </td>
+                        <td class="views-field views-field-field-dept-dir">
+                              嚙踝蕭嚙賡��嚙賜��嚙� </td>
+                        <td class="views-field views-field-field-dept">
+                              <a href="/mis/10" typeof="skos:Concept" property="rdfs:label skos:prefLabel"
+                                    datatype="">���嚙賡�殷蕭������嚙踝蕭���嚙�</a>
+                        </td>
+                        <td class="views-field views-field-field-url">
+                              <a href="https://im.hust.edu.tw/" class="ext" target="_blank">https://im.hust.edu.tw/<span
+                                          class="ext"><span class="element-invisible"> (link is
+                                                external)</span></span></a>
+                        </td>
+                        <td class="views-field views-field-field-phone">
+                              (04)23692136 </td>
+                        <td class="views-field views-field-view-node">
+                              <a href="/mis/225">��潘撩嚙踝蕭</a>
+                        </td>
+                  </tr>
+            </tbody>
+      </table>
+      <script>
+            function sortTable(column, order) {
+                $('#sort-table').bootstrapTable('refreshOptions', {
+                    sortName: column,
+                    sortOrder: order
+                });
+            }
+            
+            $(document).ready(function(){
+                // Custom sorting function for stroke count
+                function sortByStrokes(a, b, order) {
+                    // Extract the Chinese characters
+                    const regex = /[\u4e00-\u9fa5]/g;
+                    const aChars = a.replace(regex, '');
+                    const bChars = b.replace(regex, '');
+                    
+                    // Calculate the stroke count for each character
+                    const aStrokeCount = calculateStrokeCount(aChars);
+                    const bStrokeCount = calculateStrokeCount(bChars);
+                    
+                    if (order === 'asc') {
+                        return aStrokeCount - bStrokeCount;
+                    } else {
+                        return bStrokeCount - aStrokeCount;
+                    }
+                }
+                
+                // Calculate stroke count for a Chinese character
+                function calculateStrokeCount(chars) {
+                    // This is a simplified calculation. A more accurate one would involve a dictionary.
+                    return chars.length;
+                }
+                
+                // Initialize the Bootstrap Table
+                $('#sort-table').bootstrapTable({
+                    sortName: 'name',
+                    sortOrder: 'asc',
+                    sortStable: true,
+                    columns: [{
+                        field: 'name',
+                        title: 'Name',
+                        sortable: true,
+                        sorter: sortByStrokes
+                    }, {
+                        field: 'age',
+                        title: 'Age',
+                        sortable: true
+                    }]
+                });
+            });
+        </script>
+
+</body>
+
+</html>
